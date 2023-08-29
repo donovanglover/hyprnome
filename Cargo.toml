@@ -1,6 +1,9 @@
 [package]
 name = "hyprnome"
+description = "GNOME-like workspace switching in Hyprland."
 version = "0.1.0"
+authors = ["Copyright (C) 2023 Donovan Glover <https://donovan.is/>"]
+repository = "https://github.com/donovanglover/hyprnome"
 edition = "2021"
 
 [dependencies]
