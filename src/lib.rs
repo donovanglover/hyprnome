@@ -1,5 +1,9 @@
 use clap::Parser;
 use cli::Cli;
+use hyprland::data::Workspace;
+use hyprland::data::Workspaces;
+use hyprland::data::Monitors;
+use hyprland::prelude::*;
 
 mod cli;
 
@@ -30,4 +34,14 @@ pub fn get_id(state: WorkspaceState) -> i32 {
         let id = occupied_ids[0] - 1;
     }
     0
+}
+
+pub fn get_workspace_state() -> WorkspaceState {
+    let workspaces = Workspaces::get().unwrap();
+
+    WorkspaceState {
+        current_id: Workspace::get_active().unwrap().id,
+        monitor_ids: workspaces.clone().filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name).map(|x| x.id).collect(),
+        occupied_ids: workspaces.map(|x| x.id).collect(),
+    }
 }
