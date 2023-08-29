@@ -9,7 +9,7 @@ GNOME-like workspace switching in Hyprland.
 ## Installation
 
 ```fish
-cargo install --git https://github.com/donovanglover/hyprnome
+cargo install --git https://github.com/donovanglover/hyprnome --tag 0.1.0
 ```
 
 ## Usage
