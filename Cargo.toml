@@ -2,3 +2,6 @@
 name = "hyprnome"
 version = "0.1.0"
 edition = "2021"
+
+[dependencies]
+hyprland = "0.3.9"
