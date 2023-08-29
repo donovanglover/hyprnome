@@ -10,6 +10,10 @@ between them.
 #[derive(Parser)]
 #[command(author, version, about, long_about = LONG_ABOUT)]
 pub struct Cli {
+    /// Go to the previous workspace
+    #[arg(short, long, default_value_t = false)]
+    pub previous: bool,
+
     /// Create empty workspaces when going backwards
     #[arg(short, long, default_value_t = false)]
     pub allow_going_backwards: bool,
