@@ -14,3 +14,9 @@ hyprland = "0.3.9"
 clap = { version = "4.4.1", features = ["derive"] }
 clap_complete = "4.4.0"
 clap_mangen = "0.2.13"
+
+[dev-dependencies]
+assert_cmd = "2.0.12"
+rustympkglib = "0.1.1"
+serde = "1.0.188"
+toml = "0.7.6"
