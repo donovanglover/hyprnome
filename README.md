@@ -11,3 +11,15 @@ GNOME-like workspace switching in Hyprland.
 ```fish
 cargo install --git https://github.com/donovanglover/hyprnome
 ```
+
+## Usage
+
+```man
+Usage: hyprnome [OPTIONS]
+
+Options:
+  -a, --allow-going-backwards  Create empty workspaces when going backwards
+  -v, --verbose                Show information about what hyprnome is doing
+  -h, --help                   Print help (see more with '--help')
+  -V, --version                Print version
+```
