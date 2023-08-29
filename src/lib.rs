@@ -12,8 +12,15 @@ pub fn log(text: &str) {
     }
 }
 
+pub struct WorkspaceState {
+    pub current_id: i32,
+    pub monitor_ids: Vec<i32>,
+    pub occupied_ids: Vec<i32>
+}
+
 /// Gets the id
-pub fn get_id(current_id: i32, monitor_ids: Vec<i32>, occupied_ids: Vec<i32>) -> i32 {
+pub fn get_id(state: WorkspaceState) -> i32 {
+    let WorkspaceState { current_id, monitor_ids, occupied_ids } = state;
     // let current_id = 500
     // let occupied_ids = [495, 496, 498, 500, 502, 504, 505]
     // let monitor_ids = [496, 500, 504]
