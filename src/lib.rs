@@ -29,8 +29,8 @@ impl WorkspaceState {
 
         WorkspaceState {
             current_id: Workspace::get_active().unwrap().id,
-            monitor_ids: workspaces.clone().filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name).map(|x| x.id).collect(),
-            occupied_ids: workspaces.map(|x| x.id).collect(),
+            monitor_ids: workspaces.clone().filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name).map(|x| x.id).filter(|x| x > &0).collect(),
+            occupied_ids: workspaces.map(|x| x.id).filter(|x| x > &0).collect(),
         }
     }
 }
