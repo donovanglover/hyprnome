@@ -22,6 +22,18 @@ pub struct WorkspaceState {
     pub occupied_ids: Vec<i32>
 }
 
+impl WorkspaceState {
+    pub fn new() -> WorkspaceState {
+        let workspaces = Workspaces::get().unwrap();
+
+        WorkspaceState {
+            current_id: Workspace::get_active().unwrap().id,
+            monitor_ids: workspaces.clone().filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name).map(|x| x.id).collect(),
+            occupied_ids: workspaces.map(|x| x.id).collect(),
+        }
+    }
+}
+
 /// Gets the previous workspace on a monitor, or try to choose a new left-most empty workspace
 pub fn get_previous_id(state: WorkspaceState) -> i32 {
     let WorkspaceState { current_id, monitor_ids, occupied_ids } = state;
@@ -56,17 +68,7 @@ pub fn get_next_id(state: WorkspaceState) -> i32 {
 }
 
 pub fn get_id(previous: bool) -> i32 {
-    let state = get_workspace_state();
+    let state = WorkspaceState::new();
 
     return if previous { get_previous_id(state) } else { get_next_id(state) }
-}
-
-pub fn get_workspace_state() -> WorkspaceState {
-    let workspaces = Workspaces::get().unwrap();
-
-    WorkspaceState {
-        current_id: Workspace::get_active().unwrap().id,
-        monitor_ids: workspaces.clone().filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name).map(|x| x.id).collect(),
-        occupied_ids: workspaces.map(|x| x.id).collect(),
-    }
 }
