@@ -64,8 +64,3 @@ bind = $SUPER, 2, exec, hyprnome
 bind = $SUPER_SHIFT, 1, exec, hyprnome --previous --move
 bind = $SUPER_SHIFT, 2, exec, hyprnome --move
 ```
-
-## Todo
-
-- [ ] Multi-monitor support
-- [ ] Add video/image
