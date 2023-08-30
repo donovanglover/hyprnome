@@ -2,6 +2,7 @@ use clap::Parser;
 use cli::Cli;
 use hyprland::dispatch::*;
 use hyprnome::get_id;
+use hyprnome::log;
 
 mod cli;
 
@@ -11,6 +12,8 @@ mod cli;
 fn main() -> hyprland::Result<()> {
     let Cli { _move, .. } = Cli::parse();
     let id = WorkspaceIdentifierWithSpecial::Id(get_id());
+
+    log(&format!("Dispatched ID:\t{id}"));
 
     if _move {
         hyprland::dispatch!(MoveToWorkspace, id, None)
