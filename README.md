@@ -21,10 +21,13 @@ cargo install --git https://github.com/donovanglover/hyprnome --tag 0.1.0
 Usage: hyprnome [OPTIONS]
 
 Options:
-  -a, --allow-going-backwards  Create empty workspaces when going backwards
-  -v, --verbose                Show information about what hyprnome is doing
-  -h, --help                   Print help (see more with '--help')
-  -V, --version                Print version
+  -p, --previous         Go to the previous workspace instead of the next
+  -n, --no-empty-before  Don't create empty workspaces to the left
+  -N, --no-empty-after   Don't create empty workspaces to the right
+  -m, --move             Move the active window to the dispatched workspace
+  -v, --verbose          Print debugging information
+  -h, --help             Print help (see more with '--help')
+  -V, --version          Print version
 ```
 
 Example `hyprland.conf`:
