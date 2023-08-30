@@ -1,7 +1,6 @@
 use clap::Parser;
 use cli::Cli;
 use hyprland::dispatch::*;
-use hyprland::dispatch::WorkspaceIdentifierWithSpecial;
 use hyprnome::get_id;
 
 mod cli;
