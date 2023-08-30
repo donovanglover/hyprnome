@@ -118,7 +118,7 @@ pub fn get_next_id(state: WorkspaceState, no_empty_after: bool) -> i32 {
                 i += 1;
             }
 
-            current_id
+            if !occupied_ids.contains(&i) { i } else { current_id }
         }
     } else {
         monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() + 1]

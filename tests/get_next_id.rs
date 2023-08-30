@@ -92,3 +92,18 @@ fn fill_the_gaps() {
         occupied_ids: [4, 5, 6, 7, 9].to_vec(),
     }, false), 8, "should return workspace 8 if the occupied workspaces are [4, 5, 6, 7, 9], the monitor workspaces are [4, 5], and the current workspace is 5");
 }
+
+#[test]
+fn returns_the_last_id() {
+    assert_eq!(get_next_id(WorkspaceState {
+        current_id: i32::MAX - 1,
+        monitor_ids: [i32::MAX - 1].to_vec(),
+        occupied_ids: [i32::MAX - 1].to_vec(),
+    }, false), i32::MAX, "should return i32::MAX if it's unoccupied");
+
+    assert_eq!(get_next_id(WorkspaceState {
+        current_id: i32::MAX - 2,
+        monitor_ids: [i32::MAX - 2].to_vec(),
+        occupied_ids: [i32::MAX - 2, i32::MAX - 1].to_vec(),
+    }, false), i32::MAX, "should return i32::MAX if it's unoccupied and there are in-between workspaces on other monitors");
+}
