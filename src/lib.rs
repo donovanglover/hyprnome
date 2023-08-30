@@ -26,11 +26,16 @@ pub struct WorkspaceState {
 impl WorkspaceState {
     pub fn new() -> WorkspaceState {
         let workspaces = Workspaces::get().unwrap();
+        let mut monitor_ids: Vec<i32> = workspaces.clone().filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name).map(|x| x.id).filter(|x| x > &0).collect();
+        let mut occupied_ids: Vec<i32> = workspaces.map(|x| x.id).filter(|x| x > &0).collect();
+
+        monitor_ids.sort();
+        occupied_ids.sort();
 
         WorkspaceState {
             current_id: Workspace::get_active().unwrap().id,
-            monitor_ids: workspaces.clone().filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name).map(|x| x.id).filter(|x| x > &0).collect(),
-            occupied_ids: workspaces.map(|x| x.id).filter(|x| x > &0).collect(),
+            monitor_ids,
+            occupied_ids,
         }
     }
 }
