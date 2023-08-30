@@ -11,6 +11,32 @@
 
 ## Installation
 
+### [NixOS](https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution) (Recommended)
+
+Add [`hyprnome`](https://search.nixos.org/packages?channel=unstable&query=hyprnome) to your `systemPackages` and rebuild.
+
+```nix
+{ pkgs, ... }:
+
+{
+  environment.systemPackages = with pkgs; [
+    hyprnome
+  ];
+}
+```
+
+Alternatively, use `nix run nixpkgs#hyprnome` to try hyprnome without installing it.
+
+### [Arch Linux](https://archlinux.org/)
+
+```fish
+git clone https://github.com/donovanglover/hyprnome && cd hyprnome && makepkg -si
+```
+
+### Other distributions
+
+Follow the [install guide](https://www.rust-lang.org/tools/install) for Rust. Then, use cargo to install hyprnome.
+
 ```fish
 cargo install --git https://github.com/donovanglover/hyprnome --tag 0.1.0
 ```
