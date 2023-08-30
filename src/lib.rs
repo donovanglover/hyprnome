@@ -7,7 +7,7 @@ use hyprland::prelude::*;
 
 mod cli;
 
-/// A helper function to only print what's happening to users if they enable the verbose flag.
+/// Log information with --verbose
 pub fn log(text: &str) {
     let Cli { verbose, .. } = Cli::parse();
 
@@ -55,9 +55,12 @@ impl WorkspaceState {
     }
 }
 
-/// Gets the previous workspace on a monitor, or try to choose a new left-most empty workspace
+/// Gets the previous workspace on a monitor, or try to choose the next left-most empty workspace
 ///
-/// 1) Returns the workspace id before the first occupied workspace (or 1)
+/// 1) If we're the first workspace on a monitor:
+///     1.1) If we're at the lowest possible id 1 or the user doesn't want empty workspaces, return the current id
+///     1.2) Otherwise, return the first unoccupied workspace before the current id
+///         1.2.1) If all other workspaces before are occupied, return the current id instead
 /// 2) Otherwise, since there are workspaces before on the same monitor, select the one before.
 pub fn get_previous_id(state: WorkspaceState, no_empty_before: bool) -> i32 {
     let WorkspaceState {
@@ -87,10 +90,13 @@ pub fn get_previous_id(state: WorkspaceState, no_empty_before: bool) -> i32 {
     }
 }
 
-/// Gets the next workspace on a monitor, or choose a new right-most empty workspace
+/// Gets the next workspace on a monitor, or try to choose the new right-most empty workspace
 ///
-/// 1) Returns the workspace id after the last occupied workspace
-/// 2) Otherwise, since there are workspaces after on the same monitor, select the one after
+/// 1) If we're the last workspace on a monitor:
+///     1.1) If we're at the MAX or the user doesn't want empty workspaces, return the current id
+///     1.2) Otherwise, return the first unoccupied workspace after the current id
+///         1.2.1) If all other workspaces after are occupied, return the current id instead
+/// 2) Otherwise, since there are workspaces after on the same monitor, select the one after.
 pub fn get_next_id(state: WorkspaceState, no_empty_after: bool) -> i32 {
     let WorkspaceState {
         current_id,
