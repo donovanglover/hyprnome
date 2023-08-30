@@ -40,6 +40,21 @@ pub fn get_previous_id(state: WorkspaceState) -> i32 {
     monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() - 1]
 }
 
+/// Gets the next workspace on a monitor, or choose a new right-most empty workspace
+pub fn get_next_id(state: WorkspaceState) -> i32 {
+    let WorkspaceState { current_id, monitor_ids, occupied_ids } = state;
+
+    // If the current workspace is the last workspace on the monitor
+    if monitor_ids[monitor_ids.len() - 1] == current_id {
+
+        // Return the workspace id after the last occupied workspace
+        return occupied_ids[occupied_ids.len() - 1] + 1;
+    }
+
+    // Otherwise, since there are workspaces after on the same monitor, select the one after.
+    monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() + 1]
+}
+
 pub fn get_workspace_state() -> WorkspaceState {
     let workspaces = Workspaces::get().unwrap();
 
