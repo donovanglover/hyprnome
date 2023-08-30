@@ -64,3 +64,7 @@ bind = $SUPER, 2, exec, hyprnome
 bind = $SUPER_SHIFT, 1, exec, hyprnome --previous --move
 bind = $SUPER_SHIFT, 2, exec, hyprnome --move
 ```
+
+## Contributing
+
+This software should be bug-free, however contributions are welcome. Remember to write tests for any new functionality and ensure that all existing tests pass.
