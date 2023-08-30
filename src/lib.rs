@@ -16,6 +16,7 @@ pub fn log(text: &str) {
     }
 }
 
+#[derive(Default)]
 pub struct WorkspaceState {
     pub current_id: i32,
     pub monitor_ids: Vec<i32>,
