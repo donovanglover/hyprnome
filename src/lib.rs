@@ -55,6 +55,12 @@ pub fn get_next_id(state: WorkspaceState) -> i32 {
     monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() + 1]
 }
 
+pub fn get_id(previous: bool) -> i32 {
+    let state = get_workspace_state();
+
+    return if previous { get_previous_id(state) } else { get_next_id(state) }
+}
+
 pub fn get_workspace_state() -> WorkspaceState {
     let workspaces = Workspaces::get().unwrap();
 
