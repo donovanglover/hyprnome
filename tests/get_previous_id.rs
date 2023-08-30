@@ -17,7 +17,7 @@ fn only_workspace() {
 }
 
 #[test]
-fn next_workspace_on_monitor() {
+fn previous_workspace_on_monitor() {
     assert_eq!(get_previous_id(WorkspaceState {
         current_id: 502,
         monitor_ids: [500, 502].to_vec(),
@@ -32,7 +32,7 @@ fn next_workspace_on_monitor() {
 }
 
 #[test]
-fn next_empty() {
+fn previous_empty() {
     assert_eq!(get_previous_id(WorkspaceState {
         current_id: 500,
         monitor_ids: [500, 501].to_vec(),
