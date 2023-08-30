@@ -1,3 +1,5 @@
+#![cfg_attr(rustfmt, rustfmt_skip)]
+
 use hyprnome::WorkspaceState;
 use hyprnome::get_next_id;
 
