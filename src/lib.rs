@@ -43,7 +43,7 @@ pub fn get_previous_id(state: WorkspaceState) -> i32 {
     let WorkspaceState { current_id, monitor_ids, occupied_ids } = state;
 
     if monitor_ids[0] == current_id {
-        return if occupied_ids[0] == 1 { 1 } else { occupied_ids[0] - 1 };
+        if occupied_ids[0] == 1 { 1 } else { occupied_ids[0] - 1 }
     } else {
         monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() - 1]
     }
@@ -66,5 +66,5 @@ pub fn get_next_id(state: WorkspaceState) -> i32 {
 pub fn get_id(previous: bool) -> i32 {
     let state = WorkspaceState::new();
 
-    return if previous { get_previous_id(state) } else { get_next_id(state) }
+    if previous { get_previous_id(state) } else { get_next_id(state) }
 }
