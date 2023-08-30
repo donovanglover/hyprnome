@@ -4,7 +4,7 @@
 .SH NAME
 hyprnome \- GNOME\-like workspace switching in Hyprland.
 .SH SYNOPSIS
-\fBhyprnome\fR [\fB\-a\fR|\fB\-\-allow\-going\-backwards\fR] [\fB\-v\fR|\fB\-\-verbose\fR] [\fB\-h\fR|\fB\-\-help\fR] [\fB\-V\fR|\fB\-\-version\fR] 
+\fBhyprnome\fR [\fB\-p\fR|\fB\-\-previous\fR] [\fB\-n\fR|\fB\-\-no\-empty\-before\fR] [\fB\-N\fR|\fB\-\-no\-empty\-after\fR] [\fB\-m\fR|\fB\-\-move\fR] [\fB\-v\fR|\fB\-\-verbose\fR] [\fB\-h\fR|\fB\-\-help\fR] [\fB\-V\fR|\fB\-\-version\fR] 
 .SH DESCRIPTION
 .PP
 hyprnome is a program that enables you to achieve GNOME\-like workspace switching in Hyprland.
@@ -13,11 +13,20 @@ Unlike Hyprland\*(Aqs r+1/r\-1, empty workspaces are not shown to the user when 
 between them.
 .SH OPTIONS
 .TP
-\fB\-a\fR, \fB\-\-allow\-going\-backwards\fR
-Create empty workspaces when going backwards
+\fB\-p\fR, \fB\-\-previous\fR
+Go to the previous workspace instead of the next
+.TP
+\fB\-n\fR, \fB\-\-no\-empty\-before\fR
+Don\*(Aqt create empty workspaces to the left
+.TP
+\fB\-N\fR, \fB\-\-no\-empty\-after\fR
+Don\*(Aqt create empty workspaces to the right
+.TP
+\fB\-m\fR, \fB\-\-move\fR
+Move the active window to the dispatched workspace
 .TP
 \fB\-v\fR, \fB\-\-verbose\fR
-Show information about what hyprnome is doing
+Print debugging information
 .TP
 \fB\-h\fR, \fB\-\-help\fR
 Print help (see a summary with \*(Aq\-h\*(Aq)
