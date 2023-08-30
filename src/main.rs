@@ -9,7 +9,11 @@ mod cli;
 ///
 /// Specific features are abstracted into lib to make things testable.
 fn main() {
-    let Cli { previous, .. } = Cli::parse();
+    let Cli { previous, _move, .. } = Cli::parse();
 
-    hyprland::dispatch!(Workspace, WorkspaceIdentifierWithSpecial::Id(get_id(previous))).unwrap();
+    if _move {
+        hyprland::dispatch!(MoveToWorkspace, WorkspaceIdentifierWithSpecial::Id(get_id(previous)), None).unwrap();
+    } else {
+        hyprland::dispatch!(Workspace, WorkspaceIdentifierWithSpecial::Id(get_id(previous))).unwrap();
+    }
 }

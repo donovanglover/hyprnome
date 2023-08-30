@@ -18,6 +18,10 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub allow_going_backwards: bool,
 
+    /// Move the selected window
+    #[arg(short, long, default_value_t = false)]
+    pub _move: bool,
+
     /// Show information about what hyprnome is doing
     #[arg(short, long, default_value_t = false)]
     pub verbose: bool,
