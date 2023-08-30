@@ -14,9 +14,13 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub previous: bool,
 
-    /// Create empty workspaces when going backwards
+    /// Don't create empty workspaces to the left
     #[arg(short, long, default_value_t = false)]
-    pub allow_going_backwards: bool,
+    pub no_empty_before: bool,
+
+    /// Don't create empty workspaces to the right
+    #[arg(short = 'N', long, default_value_t = false)]
+    pub no_empty_after: bool,
 
     /// Move the selected window
     #[arg(short, long, default_value_t = false)]

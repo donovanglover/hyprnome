@@ -44,11 +44,15 @@ impl WorkspaceState {
 ///
 /// 1) Returns the workspace id before the first occupied workspace (or 1)
 /// 2) Otherwise, since there are workspaces before on the same monitor, select the one before.
-pub fn get_previous_id(state: WorkspaceState) -> i32 {
+pub fn get_previous_id(state: WorkspaceState, no_empty_before: bool) -> i32 {
     let WorkspaceState { current_id, monitor_ids, occupied_ids } = state;
 
     if monitor_ids[0] == current_id {
-        if occupied_ids[0] == 1 { 1 } else { occupied_ids[0] - 1 }
+        if occupied_ids[0] == 1 || no_empty_before {
+            current_id
+        } else {
+            occupied_ids[0] - 1
+        }
     } else {
         monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() - 1]
     }
@@ -58,18 +62,25 @@ pub fn get_previous_id(state: WorkspaceState) -> i32 {
 ///
 /// 1) Returns the workspace id after the last occupied workspace
 /// 2) Otherwise, since there are workspaces after on the same monitor, select the one after
-pub fn get_next_id(state: WorkspaceState) -> i32 {
+pub fn get_next_id(state: WorkspaceState, no_empty_after: bool) -> i32 {
     let WorkspaceState { current_id, monitor_ids, occupied_ids } = state;
 
     if monitor_ids[monitor_ids.len() - 1] == current_id {
-        occupied_ids[occupied_ids.len() - 1] + 1
+        if occupied_ids[occupied_ids.len() - 1] == i32::MAX || no_empty_after {
+            current_id
+        } else {
+            occupied_ids[occupied_ids.len() - 1] + 1
+        }
     } else {
         monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() + 1]
     }
 }
 
-pub fn get_id(previous: bool) -> i32 {
+pub fn get_id() -> i32 {
     let state = WorkspaceState::new();
+    let Cli { previous, no_empty_before, no_empty_after, .. } = Cli::parse();
 
-    if previous { get_previous_id(state) } else { get_next_id(state) }
+    dbg!(&state);
+
+    if previous { get_previous_id(state, no_empty_before) } else { get_next_id(state, no_empty_after) }
 }
