@@ -16,6 +16,7 @@ pub fn log(text: &str) {
     }
 }
 
+/// Struct to keep related workspace state together
 #[derive(Default)]
 pub struct WorkspaceState {
     pub current_id: i32,
@@ -23,7 +24,9 @@ pub struct WorkspaceState {
     pub occupied_ids: Vec<i32>,
 }
 
+/// Implementation for WorkspaceState
 impl WorkspaceState {
+    /// Creates a new WorkspaceState
     pub fn new() -> WorkspaceState {
         let workspaces = Workspaces::get().unwrap();
         let mut monitor_ids: Vec<i32> = workspaces
@@ -44,6 +47,7 @@ impl WorkspaceState {
         }
     }
 
+    /// Logs the current WorkspaceState
     pub fn log(&self) {
         log(&format!("Current ID:\t{}", self.current_id));
         log(&format!("Monitor IDs:\t{:?}", self.monitor_ids));
@@ -95,6 +99,7 @@ pub fn get_next_id(state: WorkspaceState, no_empty_after: bool) -> i32 {
     }
 }
 
+/// Gets an ID to dispatch based on the current workspace state and cli options
 pub fn get_id() -> i32 {
     let state = WorkspaceState::new();
     let Cli {
