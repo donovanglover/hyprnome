@@ -9,8 +9,19 @@ hyprnome \- GNOME\-like workspace switching in Hyprland.
 .PP
 hyprnome is a program that enables you to achieve GNOME\-like workspace switching in Hyprland.
 .PP
-Unlike Hyprland\*(Aqs r+1/r\-1, empty workspaces are not shown to the user when the user navigates
-between them.
+Unlike Hyprland\*(Aqs r+1/r\-1, empty workspaces between two occupied workspaces are skipped.
+.PP
+Unlike Hyprland\*(Aqs m+1/m\-1, new workspaces are created instead of wrapping to existing ones.
+.PP
+Example hyprland.conf:
+.PP
+bind = $SUPER, 1, exec, hyprnome \-\-previous
+.PP
+bind = $SUPER, 2, exec, hyprnome
+.PP
+bind = $SUPER_SHIFT, 1, exec, hyprnome \-\-previous \-\-move
+.PP
+bind = $SUPER_SHIFT, 2, exec, hyprnome \-\-move
 .SH OPTIONS
 .TP
 \fB\-p\fR, \fB\-\-previous\fR
