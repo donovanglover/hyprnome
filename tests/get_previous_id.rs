@@ -75,3 +75,18 @@ fn out_of_bounds() {
         occupied_ids: [1, 2, 3, 4].to_vec(),
     }, false), 3, "should return the current workspace if all previous workspaces are occupied");
 }
+
+#[test]
+fn fill_the_gaps() {
+    assert_eq!(get_previous_id(WorkspaceState {
+        current_id: 3,
+        monitor_ids: [3, 4].to_vec(),
+        occupied_ids: [1, 3, 4].to_vec(),
+    }, false), 2, "should return workspace 2 if the occupied workspaces are [1, 3, 4], the monitor workspaces are [3, 4], and the current workspace is 3");
+
+    assert_eq!(get_previous_id(WorkspaceState {
+        current_id: 4,
+        monitor_ids: [4, 5].to_vec(),
+        occupied_ids: [1, 3, 4, 5].to_vec(),
+    }, false), 2, "should return workspace 2 if the occupied workspaces are [1, 3, 4, 5], the monitor workspaces are [4, 5], and the current workspace is 4");
+}

@@ -67,10 +67,20 @@ pub fn get_previous_id(state: WorkspaceState, no_empty_before: bool) -> i32 {
     } = state;
 
     if monitor_ids[0] == current_id {
-        if occupied_ids[0] == 1 || no_empty_before {
+        if monitor_ids[0] == 1 || no_empty_before {
             current_id
         } else {
-            occupied_ids[0] - 1
+            let mut i = current_id - 1;
+
+            while i > 0 {
+                if !occupied_ids.contains(&i) {
+                    return i;
+                }
+
+                i -= 1;
+            }
+
+            current_id
         }
     } else {
         monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() - 1]
