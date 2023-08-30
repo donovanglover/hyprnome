@@ -99,10 +99,20 @@ pub fn get_next_id(state: WorkspaceState, no_empty_after: bool) -> i32 {
     } = state;
 
     if monitor_ids[monitor_ids.len() - 1] == current_id {
-        if occupied_ids[occupied_ids.len() - 1] == i32::MAX || no_empty_after {
+        if monitor_ids[monitor_ids.len() - 1] == i32::MAX || no_empty_after {
             current_id
         } else {
-            occupied_ids[occupied_ids.len() - 1] + 1
+            let mut i = current_id + 1;
+
+            while i < i32::MAX {
+                if !occupied_ids.contains(&i) {
+                    return i;
+                }
+
+                i += 1;
+            }
+
+            current_id
         }
     } else {
         monitor_ids[monitor_ids.iter().position(|&x| x == current_id).unwrap() + 1]
