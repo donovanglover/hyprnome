@@ -7,6 +7,15 @@ use hyprland::prelude::*;
 
 mod cli;
 
+/// A helper function to only print what's happening to users if they enable the verbose flag.
+pub fn log(text: &str) {
+    let Cli { verbose, .. } = Cli::parse();
+
+    if verbose {
+        println!("{text}")
+    }
+}
+
 #[derive(Default)]
 pub struct WorkspaceState {
     pub current_id: i32,
@@ -28,6 +37,12 @@ impl WorkspaceState {
             monitor_ids,
             occupied_ids,
         }
+    }
+
+    pub fn log(&self) {
+        log(&format!("Current ID:\t{}", self.current_id));
+        log(&format!("Monitor IDs:\t{:?}", self.monitor_ids));
+        log(&format!("Occupied IDs:\t{:?}", self.occupied_ids));
     }
 }
 
@@ -69,13 +84,9 @@ pub fn get_next_id(state: WorkspaceState, no_empty_after: bool) -> i32 {
 
 pub fn get_id() -> i32 {
     let state = WorkspaceState::new();
-    let Cli { previous, no_empty_before, no_empty_after, verbose, .. } = Cli::parse();
+    let Cli { previous, no_empty_before, no_empty_after, .. } = Cli::parse();
 
-    if verbose {
-        println!("Current ID:\t{}", state.current_id);
-        println!("Monitor IDs:\t{:?}", state.monitor_ids);
-        println!("Occupied IDs:\t{:?}", state.occupied_ids);
-    }
+    state.log();
 
     if previous { get_previous_id(state, no_empty_before) } else { get_next_id(state, no_empty_after) }
 }
