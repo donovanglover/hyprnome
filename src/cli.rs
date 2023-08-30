@@ -10,7 +10,7 @@ between them.
 #[derive(Parser)]
 #[command(author, version, about, long_about = LONG_ABOUT)]
 pub struct Cli {
-    /// Go to the previous workspace
+    /// Go to the previous workspace instead of the next
     #[arg(short, long, default_value_t = false)]
     pub previous: bool,
 
@@ -22,11 +22,11 @@ pub struct Cli {
     #[arg(short = 'N', long, default_value_t = false)]
     pub no_empty_after: bool,
 
-    /// Move the selected window
+    /// Move the active window to the dispatched workspace
     #[arg(short, long, default_value_t = false)]
     pub _move: bool,
 
-    /// Show information about what hyprnome is doing
+    /// Print debugging information
     #[arg(short, long, default_value_t = false)]
     pub verbose: bool,
 }
