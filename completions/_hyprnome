@@ -15,10 +15,16 @@ _hyprnome() {
 
     local context curcontext="$curcontext" state line
     _arguments "${_arguments_options[@]}" \
-'-a[Create empty workspaces when going backwards]' \
-'--allow-going-backwards[Create empty workspaces when going backwards]' \
-'-v[Show information about what hyprnome is doing]' \
-'--verbose[Show information about what hyprnome is doing]' \
+'-p[Go to the previous workspace instead of the next]' \
+'--previous[Go to the previous workspace instead of the next]' \
+'-n[Don'\''t create empty workspaces to the left]' \
+'--no-empty-before[Don'\''t create empty workspaces to the left]' \
+'-N[Don'\''t create empty workspaces to the right]' \
+'--no-empty-after[Don'\''t create empty workspaces to the right]' \
+'-m[Move the active window to the dispatched workspace]' \
+'--move[Move the active window to the dispatched workspace]' \
+'-v[Print debugging information]' \
+'--verbose[Print debugging information]' \
 '-h[Print help (see more with '\''--help'\'')]' \
 '--help[Print help (see more with '\''--help'\'')]' \
 '-V[Print version]' \

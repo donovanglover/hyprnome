@@ -19,7 +19,7 @@ _hyprnome() {
 
     case "${cmd}" in
         hyprnome)
-            opts="-a -v -h -V --allow-going-backwards --verbose --help --version"
+            opts="-p -n -N -m -v -h -V --previous --no-empty-before --no-empty-after --move --verbose --help --version"
             if [[ ${cur} == -* || ${COMP_CWORD} -eq 1 ]] ; then
                 COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
                 return 0
