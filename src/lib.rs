@@ -90,7 +90,7 @@ pub fn get_previous_id(state: WorkspaceState, no_empty_before: bool) -> i32 {
     }
 }
 
-/// Gets the next workspace on a monitor, or try to choose the new right-most empty workspace
+/// Gets the next workspace on a monitor, or try to choose the next right-most empty workspace
 ///
 /// 1) If we're the last workspace on a monitor:
 ///     1.1) If we're at the MAX or the user doesn't want empty workspaces, return the current id
