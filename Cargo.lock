@@ -388,9 +388,9 @@ checksum = "7f24254aa9a54b5c858eaee2f5bccdb46aaf0e486a595ed5fd8f86ba55232a70"
 
 [[package]]
 name = "hyprland"
-version = "0.3.9"
+version = "0.3.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5b1eac91e67a2db723b96dee0883a7b3ccce55d1ee26e7373c497505f7a3c4b8"
+checksum = "dfa94ae7899f3f1bdcad21dcd50366a60f323375a25610889246f276d7f9fb06"
 dependencies = [
  "async-trait",
  "derive_more",
