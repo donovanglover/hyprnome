@@ -12,7 +12,7 @@ hyprland = "0.3.12"
 
 [build-dependencies]
 clap = { version = "4.4.6", features = ["derive"] }
-clap_complete = "4.4.3"
+clap_complete = "4.4.4"
 clap_mangen = "0.2.14"
 
 [dev-dependencies]
