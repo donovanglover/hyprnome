@@ -7,11 +7,11 @@ repository = "https://github.com/donovanglover/hyprnome"
 edition = "2021"
 
 [dependencies]
-clap = { version = "4.4.6", features = ["derive"] }
+clap = { version = "4.4.7", features = ["derive"] }
 hyprland = "0.3.12"
 
 [build-dependencies]
-clap = { version = "4.4.6", features = ["derive"] }
+clap = { version = "4.4.7", features = ["derive"] }
 clap_complete = "4.4.4"
 clap_mangen = "0.2.15"
 
