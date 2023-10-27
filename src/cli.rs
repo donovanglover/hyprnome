@@ -66,6 +66,17 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub keep_special: bool,
 
+    /// Close special workspaces first before attempting to switch workspaces
+    ///
+    /// Special workspaces are cool when used with translucent or non-opaque windows that let you
+    /// see the workspaces behind them. They become problematic when there's an opaque window
+    /// preventing you from seeing the workspaces you're switching to.
+    ///
+    /// This flag makes it possible to automatically close special workspaces when switching
+    /// between non-special workspaces.
+    #[arg(short, long, default_value_t = false)]
+    pub close_special: bool,
+
     /// Print debugging information
     #[arg(short, long, default_value_t = false)]
     pub verbose: bool,

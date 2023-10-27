@@ -14,6 +14,7 @@ fn main() -> hyprland::Result<()> {
     let Cli {
         _move,
         keep_special,
+        close_special,
         ..
     } = Cli::parse();
 
@@ -32,6 +33,10 @@ fn main() -> hyprland::Result<()> {
             Ok(())
         }
     } else {
+        if close_special && is_special() {
+            hyprland::dispatch!(ToggleSpecialWorkspace, None)?;
+        }
+
         hyprland::dispatch!(Workspace, id)
     }
 }
