@@ -1,3 +1,4 @@
+use clap::builder::styling::{AnsiColor, Effects, Styles};
 use clap::Parser;
 
 const LONG_ABOUT: &str = "
@@ -18,8 +19,16 @@ bind = $SUPER_SHIFT, 1, exec, hyprnome --previous --move
 bind = $SUPER_SHIFT, 2, exec, hyprnome --move
 ";
 
+fn styles() -> Styles {
+    Styles::styled()
+        .header(AnsiColor::Red.on_default() | Effects::BOLD)
+        .usage(AnsiColor::Red.on_default() | Effects::BOLD)
+        .literal(AnsiColor::Blue.on_default() | Effects::BOLD)
+        .placeholder(AnsiColor::Green.on_default())
+}
+
 #[derive(Parser)]
-#[command(author, version, about, long_about = LONG_ABOUT)]
+#[command(author, version, about, long_about = LONG_ABOUT, styles = styles())]
 pub struct Cli {
     /// Go to the previous workspace instead of the next
     #[arg(short, long, default_value_t = false)]
