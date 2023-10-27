@@ -55,6 +55,17 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub _move: bool,
 
+    /// Don't auto-close special workspaces when moving windows outside them
+    ///
+    /// Hyprland v0.29.0 and above allow opening empty special workspaces. This changed
+    /// the behavior of special workspaces, most notably not auto-closing them by default.
+    ///
+    /// hyprdim v0.2.0 auto-closes special workspaces by default to mimic the old behavior.
+    /// In order to avoid breaking people's workflows, it's possible to keep the special workspace
+    /// open with this flag, although you'd then have to manually close the special workspace.
+    #[arg(short, long, default_value_t = false)]
+    pub keep_special: bool,
+
     /// Print debugging information
     #[arg(short, long, default_value_t = false)]
     pub verbose: bool,
