@@ -51,6 +51,8 @@ Options:
   -n, --no-empty-before  Don't create empty workspaces to the left
   -N, --no-empty-after   Don't create empty workspaces to the right
   -m, --move             Move the active window to the dispatched workspace
+  -k, --keep-special     Don't auto-close special workspaces when moving windows outside them
+  -c, --close-special    Close special workspaces first before attempting to switch workspaces
   -v, --verbose          Print debugging information
   -h, --help             Print help (see more with '--help')
   -V, --version          Print version
