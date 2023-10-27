@@ -38,7 +38,7 @@ git clone https://github.com/donovanglover/hyprnome && cd hyprnome && makepkg -s
 Follow the [install guide](https://www.rust-lang.org/tools/install) for Rust. Then, use cargo to install hyprnome.
 
 ```fish
-cargo install --git https://github.com/donovanglover/hyprnome --tag 0.1.0
+cargo install --git https://github.com/donovanglover/hyprnome --tag 0.2.0
 ```
 
 ## Usage
