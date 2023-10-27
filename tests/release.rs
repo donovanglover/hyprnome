@@ -11,7 +11,6 @@ struct Config {
 #[derive(Debug, Deserialize)]
 struct PackageConfig {
     version: Option<String>,
-    authors: Option<Vec<String>>,
     description: Option<String>,
 }
 
