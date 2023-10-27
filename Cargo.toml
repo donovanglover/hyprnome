@@ -5,6 +5,7 @@ version = "0.1.0"
 authors = ["Copyright (C) 2023 Donovan Glover <https://donovan.is/>"]
 repository = "https://github.com/donovanglover/hyprnome"
 edition = "2021"
+license = "GPL-3.0-or-later"
 
 [dependencies]
 clap = { version = "4.4.7", features = ["derive"] }
