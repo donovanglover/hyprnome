@@ -9,7 +9,7 @@ use clap_mangen::Man;
 static NAME: &str = "hyprnome";
 
 fn generate_man_pages(cmd: Command) {
-    let man_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("man");
+    let man_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/man");
 
     std::fs::create_dir_all(&man_dir).unwrap();
 
@@ -20,7 +20,7 @@ fn generate_man_pages(cmd: Command) {
 }
 
 fn generate_shell_completions(mut cmd: Command) {
-    let comp_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("completions");
+    let comp_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/completions");
 
     std::fs::create_dir_all(&comp_dir).unwrap();
 
