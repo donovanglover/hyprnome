@@ -98,5 +98,10 @@ fn current_version_is_used() {
     assert!(
         readme.contains(&("--tag ".to_owned() + cargo_version.as_str())),
         "should have the correct tag version in the README"
+    );
+
+    assert!(
+        readme.contains(&("--branch ".to_owned() + cargo_version.as_str())),
+        "should have the correct branch version in the README"
     )
 }
