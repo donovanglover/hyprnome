@@ -1,6 +1,6 @@
 # Maintainer: Donovan Glover <https://donovan.is/>
 pkgname=hyprnome
-pkgver=0.2.0
+pkgver=0.1.0
 pkgrel=1
 pkgdesc="GNOME-like workspace switching in Hyprland"
 arch=('x86_64')
