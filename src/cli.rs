@@ -10,13 +10,13 @@ Unlike Hyprland's m+1/m-1, new workspaces are created instead of wrapping to exi
 
 Example hyprland.conf:
 
-bind = $SUPER, 1, exec, hyprnome --previous
+bind = SUPER, 1, exec, hyprnome --previous
 
-bind = $SUPER, 2, exec, hyprnome
+bind = SUPER, 2, exec, hyprnome
 
-bind = $SUPER_SHIFT, 1, exec, hyprnome --previous --move
+bind = SUPER_SHIFT, 1, exec, hyprnome --previous --move
 
-bind = $SUPER_SHIFT, 2, exec, hyprnome --move
+bind = SUPER_SHIFT, 2, exec, hyprnome --move
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

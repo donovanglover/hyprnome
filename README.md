@@ -61,10 +61,10 @@ Options:
 Example `hyprland.conf`:
 
 ```bash
-bind = $SUPER, 1, exec, hyprnome --previous
-bind = $SUPER, 2, exec, hyprnome
-bind = $SUPER_SHIFT, 1, exec, hyprnome --previous --move
-bind = $SUPER_SHIFT, 2, exec, hyprnome --move
+bind = SUPER, 1, exec, hyprnome --previous
+bind = SUPER, 2, exec, hyprnome
+bind = SUPER_SHIFT, 1, exec, hyprnome --previous --move
+bind = SUPER_SHIFT, 2, exec, hyprnome --move
 ```
 
 ## Contributing
