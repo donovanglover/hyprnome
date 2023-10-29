@@ -1,4 +1,4 @@
-name: cargo
+name: ci
 
 on:
   push:
@@ -12,22 +12,36 @@ env:
 
 jobs:
   build:
+    name: cargo build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: cargo build
   test:
+    name: cargo test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: cargo test
   format:
+    name: cargo fmt --check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: cargo fmt --check
   clippy:
+    name: cargo clippy
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: cargo clippy
+  pkgbuild:
+    name: makepkg -si
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - id: makepkg
+      uses: edlanglois/pkgbuild-action@v1
+    - run: |
+        echo "Successfully created the following package archive"
+        echo "Package: ${{ steps.makepkg.outputs.pkgfile0 }}"
