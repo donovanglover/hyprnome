@@ -30,7 +30,7 @@ Alternatively, use `nix run nixpkgs#hyprnome` to try hyprnome without installing
 ### [Arch Linux](https://archlinux.org/)
 
 ```fish
-git clone https://github.com/donovanglover/hyprnome --branch 0.1.0 && cd hyprnome && makepkg -si
+git clone https://github.com/donovanglover/hyprnome -b 0.1.0 && cd hyprnome && makepkg -si
 ```
 
 ### Other distributions

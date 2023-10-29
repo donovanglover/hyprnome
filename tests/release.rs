@@ -101,7 +101,7 @@ fn current_version_is_used() {
     );
 
     assert!(
-        readme.contains(&("--branch ".to_owned() + cargo_version.as_str())),
+        readme.contains(&("-b ".to_owned() + cargo_version.as_str())),
         "should have the correct branch version in the README"
     )
 }
