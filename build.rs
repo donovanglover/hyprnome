@@ -5,24 +5,27 @@ use clap::CommandFactory;
 use clap_complete::generate_to;
 use clap_complete::Shell::{Bash, Fish, Zsh};
 use clap_mangen::Man;
+use std::fs::{create_dir_all, write};
+use std::path::PathBuf;
 
 static NAME: &str = "hyprnome";
 
 fn generate_man_pages(cmd: Command) {
-    let man_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/man");
+    let man_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/man");
 
-    std::fs::create_dir_all(&man_dir).unwrap();
+    create_dir_all(&man_dir).unwrap();
 
     let man = Man::new(cmd);
     let mut buffer: Vec<u8> = Default::default();
+
     man.render(&mut buffer).expect("Man page generation failed");
-    std::fs::write(man_dir.join(NAME.to_owned() + ".1"), buffer).expect("Failed to write man page");
+    write(man_dir.join(NAME.to_owned() + ".1"), buffer).expect("Failed to write man page");
 }
 
 fn generate_shell_completions(mut cmd: Command) {
-    let comp_dir = std::path::PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/completions");
+    let comp_dir = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("target/completions");
 
-    std::fs::create_dir_all(&comp_dir).unwrap();
+    create_dir_all(&comp_dir).unwrap();
 
     for shell in [Bash, Fish, Zsh] {
         generate_to(shell, &mut cmd, NAME, &comp_dir).unwrap();
