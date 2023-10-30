@@ -40,14 +40,23 @@ fn styles() -> Styles {
 #[command(author, version, about, long_about = LONG_ABOUT, styles = styles())]
 pub struct Cli {
     /// Go to the previous workspace instead of the next
+    ///
+    /// By default hyprnome will advance to the next workspace. --previous is necessary
+    /// when you want to go backwards in the list of occupied workspaces.
     #[arg(short, long, default_value_t = false)]
     pub previous: bool,
 
     /// Move the active window to the dispatched workspace
+    ///
+    /// This flag lets you move windows across workspaces without having to worry about
+    /// the current workspace you're in.
     #[arg(short, long, default_value_t = false)]
     pub _move: bool,
 
     /// Don't create empty workspaces when reaching the start/end
+    ///
+    /// This prevents empty workspaces from being created when no occupied workspaces
+    /// remain in a given direction.
     #[arg(short, long, default_value_t = false)]
     pub no_empty: bool,
 
@@ -75,6 +84,9 @@ pub struct Cli {
     ///
     /// This flag makes it possible to keep the special workspace visible when switching workspaces,
     /// although it won't be focused if the workspace behind it has one or more windows.
+    ///
+    /// Summary: This flag is available so users can choose the old behavior, however automatically
+    /// closing special workspaces (the default) does have its benefits.
     #[arg(short, long, default_value_t = false)]
     pub keep_special: bool,
 
