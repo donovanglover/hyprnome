@@ -55,27 +55,32 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub _move: bool,
 
-    /// Don't auto-close special workspaces when moving windows outside them
+    /// Don't auto-close special workspaces when switching workspaces
+    ///
+    /// With --move:
     ///
     /// Hyprland v0.29.0 and above allow opening empty special workspaces. This changed
-    /// the behavior of special workspaces, most notably not auto-closing them by default.
+    /// the behavior of special workspaces, most notably not auto-closing them by default
+    /// when moving windows outside them.
     ///
     /// hyprdim v0.2.0 auto-closes special workspaces by default to mimic the old behavior.
     /// In order to avoid breaking people's workflows, it's possible to keep the special workspace
     /// open with this flag, although you'd then have to manually close the special workspace.
-    #[arg(short, long, default_value_t = false)]
-    pub keep_special: bool,
-
-    /// Close special workspaces first before attempting to switch workspaces
+    ///
+    /// Without --move:
     ///
     /// Special workspaces are cool when used with translucent or non-opaque windows that let you
     /// see the workspaces behind them. They become problematic when there's an opaque window
     /// preventing you from seeing the workspaces you're switching to.
     ///
-    /// This flag makes it possible to automatically close special workspaces when switching
-    /// between non-special workspaces.
+    /// By default when switching workspaces, any windows in the workspace behind are focused. To
+    /// avoid accidentally thinking that the special workspace is focused, hyprnome will automatically
+    /// close special workspaces by default when switching between non-special workspaces.
+    ///
+    /// This flag makes it possible to keep the special workspace visible when switching workspaces,
+    /// although it won't be focused if the workspace behind it has one or more windows.
     #[arg(short, long, default_value_t = false)]
-    pub close_special: bool,
+    pub keep_special: bool,
 
     /// Print debugging information
     #[arg(short, long, default_value_t = false)]
