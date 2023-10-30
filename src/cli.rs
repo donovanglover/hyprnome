@@ -59,7 +59,7 @@ pub struct Cli {
     /// the behavior of special workspaces, most notably not auto-closing them by default
     /// when moving windows outside them.
     ///
-    /// hyprdim v0.2.0 auto-closes special workspaces by default to mimic the old behavior.
+    /// hyprnome v0.2.0 auto-closes special workspaces by default to mimic the old behavior.
     /// In order to avoid breaking people's workflows, it's possible to keep the special workspace
     /// open with this flag, although you'd then have to manually close the special workspace.
     ///
