@@ -43,17 +43,13 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub previous: bool,
 
-    /// Don't create empty workspaces to the left
-    #[arg(short, long, default_value_t = false)]
-    pub no_empty_before: bool,
-
-    /// Don't create empty workspaces to the right
-    #[arg(short = 'N', long, default_value_t = false)]
-    pub no_empty_after: bool,
-
     /// Move the active window to the dispatched workspace
     #[arg(short, long, default_value_t = false)]
     pub _move: bool,
+
+    /// Don't create empty workspaces when reaching the start/end
+    #[arg(short, long, default_value_t = false)]
+    pub no_empty: bool,
 
     /// Don't auto-close special workspaces when switching workspaces
     ///

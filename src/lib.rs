@@ -135,17 +135,16 @@ pub fn get_id() -> i32 {
     let state = WorkspaceState::new();
     let Cli {
         previous,
-        no_empty_before,
-        no_empty_after,
+        no_empty,
         ..
     } = Cli::parse();
 
     state.log();
 
     if previous {
-        get_previous_id(state, no_empty_before)
+        get_previous_id(state, no_empty)
     } else {
-        get_next_id(state, no_empty_after)
+        get_next_id(state, no_empty)
     }
 }
 
