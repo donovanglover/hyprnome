@@ -53,10 +53,10 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub _move: bool,
 
-    /// Don't create empty workspaces when reaching the start/end
+    /// Don't create empty workspaces in the specified direction
     ///
     /// This prevents empty workspaces from being created when no occupied workspaces
-    /// remain in a given direction.
+    /// remain in the given direction.
     #[arg(short, long, default_value_t = false)]
     pub no_empty: bool,
 
