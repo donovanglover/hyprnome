@@ -133,6 +133,7 @@ pub fn get_next_id(state: WorkspaceState, no_empty_after: bool) -> i32 {
 /// Gets an ID to dispatch based on the current workspace state and cli options
 pub fn get_id() -> i32 {
     let state = WorkspaceState::new();
+    #[rustfmt::skip]
     let Cli {
         previous,
         no_empty,
