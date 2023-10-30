@@ -60,6 +60,20 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub no_empty: bool,
 
+    /// Don't create empty workspaces to the left
+    ///
+    /// NOTE: This flag is deprecated and has been replaced with --no-empty. The flag is
+    /// kept for backwards compatibility with v0.1.0, but is hidden by default.
+    #[arg(long, default_value_t = false, hide = true)]
+    pub no_empty_before: bool,
+
+    /// Don't create empty workspaces to the right
+    ///
+    /// NOTE: This flag is deprecated and has been replaced with --no-empty. The flag is
+    /// kept for backwards compatibility with v0.1.0, but is hidden by default.
+    #[arg(short = 'N', long, default_value_t = false, hide = true)]
+    pub no_empty_after: bool,
+
     /// Don't auto-close special workspaces when switching workspaces
     ///
     /// With --move:
