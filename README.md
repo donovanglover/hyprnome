@@ -29,6 +29,8 @@ Alternatively, use `nix run nixpkgs#hyprnome` to try hyprnome without installing
 
 ### [Arch Linux](https://archlinux.org/)
 
+I don't use Arch Linux anymore, but I wrote a PKGBUILD for the `pacman` enjoyers out there. Feel free to add it to the AUR.
+
 ```fish
 git clone https://github.com/donovanglover/hyprnome -b 0.2.0 && cd hyprnome && makepkg -si
 ```
