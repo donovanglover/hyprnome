@@ -6,6 +6,7 @@
 
 - Switch between workspaces without worrying about which numbered workspace you're on.
 - Reduce the amount of effort it takes to switch workspaces since you no longer have to reach for keys 3-9.
+- Use multiple monitors without worrying about which monitor a workspace is on.
 - **Difference between `m+1`**: Does not wrap and instead creates new workspaces when reaching the end.
 - **Difference between `r+1`**: Does not show an empty workspace if there's a non-empty workspace with a higher id.
 
