@@ -12,6 +12,8 @@
 
 ## Installation
 
+hyprnome has official support for NixOS, Arch Linux (PKGBUILD), and Fedora (Copr).
+
 ### [NixOS](https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution) (Recommended)
 
 Add [`hyprnome`](https://search.nixos.org/packages?channel=unstable&query=hyprnome) to your `systemPackages` and rebuild.
@@ -28,12 +30,20 @@ Add [`hyprnome`](https://search.nixos.org/packages?channel=unstable&query=hyprno
 
 Alternatively, use `nix run nixpkgs#hyprnome` to try hyprnome without installing it.
 
-### [Arch Linux](https://archlinux.org/)
+### [Arch Linux](https://archlinux.org/) (PKGBUILD)
 
 I don't use Arch Linux anymore, but I wrote a PKGBUILD for the `pacman` enjoyers out there. Feel free to add it to the AUR.
 
 ```fish
 git clone https://github.com/donovanglover/hyprnome -b 0.2.0 && cd hyprnome && makepkg -si
+```
+
+### [Fedora](https://fedoraproject.org/) (Copr)
+
+[`hyprnome`](https://copr.fedorainfracloud.org/coprs/solopasha/hyprland/package/hyprnome) is available in the [solopasha/hyprland](https://copr.fedorainfracloud.org/coprs/solopasha/hyprland) Copr repository.
+
+```fish
+sudo dnf copr enable solopasha/hyprland && sudo dnf install hyprnome
 ```
 
 ### Other distributions
