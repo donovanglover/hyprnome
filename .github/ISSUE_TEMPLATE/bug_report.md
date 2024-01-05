@@ -11,9 +11,9 @@ assignees: ''
 
 ## Environment
 
-Output of `uname -a`:
-Output of `hyprnome -V`:
-Output of `hyprctl version`:
+- Output of `uname -a`:
+- Output of `hyprnome -V`:
+- Output of `hyprctl version`:
 
 ## Expected Behavior
 Tell us what should have happened.
