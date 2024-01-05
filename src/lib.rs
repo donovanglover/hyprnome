@@ -28,7 +28,7 @@ pub struct WorkspaceState {
 /// Implementation for WorkspaceState
 impl WorkspaceState {
     /// Creates a new WorkspaceState
-    pub fn new() -> WorkspaceState {
+    pub fn new() -> Self {
         let workspaces = Workspaces::get().unwrap();
         let mut monitor_ids: Vec<i32> = workspaces
             .clone()
@@ -41,7 +41,7 @@ impl WorkspaceState {
         monitor_ids.sort();
         occupied_ids.sort();
 
-        WorkspaceState {
+        Self {
             current_id: Workspace::get_active().unwrap().id,
             monitor_ids,
             occupied_ids,
