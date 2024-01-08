@@ -20,9 +20,9 @@ pub fn log(text: &str) {
 /// Struct to keep related workspace state together
 #[derive(Default)]
 pub struct WorkspaceState {
-    pub current_id: i32,
-    pub monitor_ids: Vec<i32>,
-    pub occupied_ids: Vec<i32>,
+    current_id: i32,
+    monitor_ids: Vec<i32>,
+    occupied_ids: Vec<i32>,
 }
 
 /// Implementation for WorkspaceState
