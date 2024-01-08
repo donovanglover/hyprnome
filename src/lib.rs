@@ -1,3 +1,4 @@
+use core::fmt;
 
 /// Struct to keep related workspace state together
 #[derive(Default)]
@@ -16,13 +17,6 @@ impl WorkspaceState {
             monitor_ids,
             occupied_ids,
         }
-    }
-
-    /// Logs the current WorkspaceState
-    pub fn log(&self) {
-        log(&format!("Current ID:\t{}", self.current_id));
-        log(&format!("Monitor IDs:\t{:?}", self.monitor_ids));
-        log(&format!("Occupied IDs:\t{:?}", self.occupied_ids));
     }
 
     /// Gets the previous workspace on a monitor, or try to choose the next left-most empty workspace
@@ -85,5 +79,11 @@ impl WorkspaceState {
         } else {
             self.monitor_ids[self.monitor_ids.iter().position(|&x| x == self.current_id).unwrap() + 1]
         }
+    }
+}
+
+impl fmt::Display for WorkspaceState {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Current ID:\t{}\nMonitor IDs:\t{:?}\nOccupied IDs:\t{:?}", self.current_id, self.monitor_ids, self.occupied_ids)
     }
 }
