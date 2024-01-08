@@ -108,3 +108,32 @@ pub struct Cli {
     #[arg(short, long, default_value_t = false)]
     pub verbose: bool,
 }
+
+/// Log information with --verbose
+pub fn log(text: &str) {
+    let Cli { verbose, .. } = Cli::parse();
+
+    if verbose {
+        println!("{text}")
+    }
+}
+
+// /// Gets an ID to dispatch based on the current workspace state and cli options
+// pub fn get_id() -> i32 {
+//     let state = WorkspaceState::new();
+//     let Cli {
+//         previous,
+//         no_empty,
+//         no_empty_before,
+//         no_empty_after,
+//         ..
+//     } = Cli::parse();
+//
+//     state.log();
+//
+//     if previous {
+//         get_previous_id(state, no_empty || no_empty_before)
+//     } else {
+//         get_next_id(state, no_empty || no_empty_after)
+//     }
+// }
