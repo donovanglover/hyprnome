@@ -1,3 +1,5 @@
+//! Generates man pages and shell completions for hyprnome.
+
 include!("src/cli.rs");
 
 use clap::Command;

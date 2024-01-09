@@ -118,12 +118,14 @@ pub fn log(text: &str) {
     }
 }
 
+/// Gets whether or not the user wants to move windows
 pub fn get_move() -> bool {
     let Cli { _move, .. } = Cli::parse();
 
     _move
 }
 
+/// Gets whether or not the user wants to keep special
 pub fn get_keep_special() -> bool {
     let Cli { keep_special, .. } = Cli::parse();
 
