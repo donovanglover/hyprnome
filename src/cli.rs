@@ -118,23 +118,11 @@ pub fn log(text: &str) {
     }
 }
 
-/// Gets whether or not the user wants to move windows
-pub fn get_move() -> bool {
-    let Cli { _move, .. } = Cli::parse();
-
-    _move
-}
-
-/// Gets whether or not the user wants to keep special
-pub fn get_keep_special() -> bool {
-    let Cli { keep_special, .. } = Cli::parse();
-
-    keep_special
-}
-
 /// Gets an ID to dispatch based on the current workspace state and cli options
-pub fn get_options() -> (bool, bool, bool, bool) {
+pub fn get_options() -> (bool, bool, bool, bool, bool, bool) {
     let Cli {
+        _move,
+        keep_special,
         previous,
         no_empty,
         no_empty_before,
@@ -142,5 +130,5 @@ pub fn get_options() -> (bool, bool, bool, bool) {
         ..
     } = Cli::parse();
 
-    (previous, no_empty, no_empty_before, no_empty_after)
+    (_move, keep_special, previous, no_empty, no_empty_before, no_empty_after)
 }
