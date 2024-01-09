@@ -114,7 +114,7 @@ pub fn log(text: &str) {
     let Cli { verbose, .. } = Cli::parse();
 
     if verbose {
-        println!("{text}")
+        println!("{text}");
     }
 }
 

@@ -19,8 +19,8 @@ impl WorkspaceState {
     ///
     /// Vectors are sorted so it's easier to perform operations on them.
     pub fn new(current_id: i32, mut monitor_ids: Vec<i32>, mut occupied_ids: Vec<i32>) -> Self {
-        monitor_ids.sort();
-        occupied_ids.sort();
+        monitor_ids.sort_unstable();
+        occupied_ids.sort_unstable();
 
         Self {
             current_id,
@@ -94,17 +94,17 @@ impl WorkspaceState {
         }
     }
 
-    /// Sets no_empty_before
+    /// Sets `no_empty_before`
     pub fn set_no_empty_before(&mut self, no_empty_before: bool) {
         self.no_empty_before = no_empty_before;
     }
 
-    /// Sets no_empty_after
+    /// Sets `no_empty_after`
     pub fn set_no_empty_after(&mut self, no_empty_after: bool) {
         self.no_empty_after = no_empty_after;
     }
 
-    /// Sets previous
+    /// Sets `previous`
     pub fn set_previous(&mut self, previous: bool) {
         self.previous = previous;
     }

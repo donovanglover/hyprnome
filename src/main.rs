@@ -14,7 +14,7 @@ fn main() {
     state.set_no_empty_after(no_empty || no_empty_after);
     state.set_previous(previous);
 
-    cli::log(&format!("{}", state));
+    cli::log(&format!("{state}"));
 
     let id = state.get_id();
 

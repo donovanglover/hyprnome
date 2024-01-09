@@ -2,7 +2,7 @@ use hyprland::data::Client;
 use hyprland::data::Monitors;
 use hyprland::data::Workspace;
 use hyprland::data::Workspaces;
-use hyprland::dispatch::*;
+use hyprland::dispatch::{Dispatch, DispatchType, WorkspaceIdentifierWithSpecial};
 use hyprland::prelude::*;
 use hyprnome::WorkspaceState;
 
