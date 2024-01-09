@@ -2,6 +2,7 @@ use hyprland::data::Client;
 use hyprland::data::Monitors;
 use hyprland::data::Workspace;
 use hyprland::data::Workspaces;
+use hyprland::dispatch::*;
 use hyprland::prelude::*;
 
 pub fn get_state() -> (i32, Vec<i32>, Vec<i32>) {
@@ -34,4 +35,26 @@ pub fn is_special() -> bool {
     }
 
     false
+}
+
+pub fn change_workspace(id: i32, _move: bool, keep_special: bool) -> hyprland::Result<()> {
+    let id = WorkspaceIdentifierWithSpecial::Id(id);
+
+    if _move {
+        let was_special = is_special();
+
+        hyprland::dispatch!(MoveToWorkspace, id, None)?;
+
+        if !keep_special && was_special {
+            hyprland::dispatch!(ToggleSpecialWorkspace, None)
+        } else {
+            Ok(())
+        }
+    } else {
+        if !keep_special && is_special() {
+            hyprland::dispatch!(ToggleSpecialWorkspace, None)?;
+        }
+
+        hyprland::dispatch!(Workspace, id)
+    }
 }

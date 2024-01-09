@@ -1,41 +1,22 @@
-use clap::Parser;
-use cli::Cli;
-use hyprland::dispatch::*;
-use hyprnome::get_id;
-use hyprnome::is_special;
-use hyprnome::log;
-
+mod hyprland;
 mod cli;
 
 /// Main function in charge of hyprnome logic.
 ///
 /// Specific features are abstracted into lib to make things testable.
-fn main() -> hyprland::Result<()> {
-    let Cli {
-        _move,
-        keep_special,
-        ..
-    } = Cli::parse();
+fn main() {
+    let _move = cli::get_move();
+    let keep_special = cli::get_keep_special();
 
-    let id = WorkspaceIdentifierWithSpecial::Id(get_id());
+    let state = hyprland::get_state();
+    let workspace_state = hyprnome::WorkspaceState::new(state.0, state.1, state.2);
 
-    log(&format!("Dispatched ID:\t{id}"));
+    cli::log(&format!("{}", workspace_state));
 
-    if _move {
-        let was_special = is_special();
+    let options = cli::get_options();
+    let id = workspace_state.get_id(options.0, options.1, options.2, options.3);
 
-        hyprland::dispatch!(MoveToWorkspace, id, None)?;
+    cli::log(&format!("Dispatched ID:\t{id}"));
 
-        if !keep_special && was_special {
-            hyprland::dispatch!(ToggleSpecialWorkspace, None)
-        } else {
-            Ok(())
-        }
-    } else {
-        if !keep_special && is_special() {
-            hyprland::dispatch!(ToggleSpecialWorkspace, None)?;
-        }
-
-        hyprland::dispatch!(Workspace, id)
-    }
+    let _ = hyprland::change_workspace(id, _move, keep_special);
 }

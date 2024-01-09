@@ -118,22 +118,27 @@ pub fn log(text: &str) {
     }
 }
 
-// /// Gets an ID to dispatch based on the current workspace state and cli options
-// pub fn get_id() -> i32 {
-//     let state = WorkspaceState::new();
-//     let Cli {
-//         previous,
-//         no_empty,
-//         no_empty_before,
-//         no_empty_after,
-//         ..
-//     } = Cli::parse();
-//
-//     state.log();
-//
-//     if previous {
-//         get_previous_id(state, no_empty || no_empty_before)
-//     } else {
-//         get_next_id(state, no_empty || no_empty_after)
-//     }
-// }
+pub fn get_move() -> bool {
+    let Cli { _move, .. } = Cli::parse();
+
+    _move
+}
+
+pub fn get_keep_special() -> bool {
+    let Cli { keep_special, .. } = Cli::parse();
+
+    keep_special
+}
+
+/// Gets an ID to dispatch based on the current workspace state and cli options
+pub fn get_options() -> (bool, bool, bool, bool) {
+    let Cli {
+        previous,
+        no_empty,
+        no_empty_before,
+        no_empty_after,
+        ..
+    } = Cli::parse();
+
+    (previous, no_empty, no_empty_before, no_empty_after)
+}
