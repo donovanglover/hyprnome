@@ -13,7 +13,12 @@ pub struct WorkspaceState {
 /// Implementation for WorkspaceState
 impl WorkspaceState {
     /// Creates a new WorkspaceState
-    pub fn new(current_id: i32, monitor_ids: Vec<i32>, occupied_ids: Vec<i32>) -> Self {
+    ///
+    /// Vectors are sorted so it's easier to perform operations on them.
+    pub fn new(current_id: i32, mut monitor_ids: Vec<i32>, mut occupied_ids: Vec<i32>) -> Self {
+        monitor_ids.sort();
+        occupied_ids.sort();
+
         Self {
             current_id,
             monitor_ids,

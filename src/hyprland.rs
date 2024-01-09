@@ -8,16 +8,13 @@ use hyprland::prelude::*;
 pub fn get_state() -> (i32, Vec<i32>, Vec<i32>) {
     let workspaces = Workspaces::get().unwrap();
     let current_id = Workspace::get_active().unwrap().id;
-    let mut monitor_ids: Vec<i32> = workspaces
+    let monitor_ids: Vec<i32> = workspaces
         .clone()
         .filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name)
         .map(|x| x.id)
         .filter(|x| x > &0)
         .collect();
-    let mut occupied_ids: Vec<i32> = workspaces.map(|x| x.id).filter(|x| x > &0).collect();
-
-    monitor_ids.sort();
-    occupied_ids.sort();
+    let occupied_ids: Vec<i32> = workspaces.map(|x| x.id).filter(|x| x > &0).collect();
 
     (current_id, monitor_ids, occupied_ids)
 }
