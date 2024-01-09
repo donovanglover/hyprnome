@@ -126,3 +126,15 @@ fn returns_the_first_id() {
 
     assert_eq!(state.get_previous_id(), 1, "should return 1 if it's unoccupied and there are in-between workspaces on other monitors");
 }
+
+#[test]
+fn cycle() {
+    let current_id = 500;
+    let monitor_ids = [500, 502, 504].to_vec();
+    let occupied_ids = [498, 500, 502, 504].to_vec();
+    let mut state = WorkspaceState::new(current_id, monitor_ids, occupied_ids);
+
+    state.set_cycle(true);
+
+    assert_eq!(state.get_previous_id(), 504, "should return the last workspace on monitor if first workspace on monitor");
+}
