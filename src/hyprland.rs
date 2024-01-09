@@ -5,6 +5,7 @@ use hyprland::data::Workspaces;
 use hyprland::dispatch::{Dispatch, DispatchType, WorkspaceIdentifierWithSpecial};
 use hyprland::prelude::*;
 use hyprnome::WorkspaceState;
+use std::collections::HashMap;
 
 pub fn get_state() -> hyprland::Result<WorkspaceState> {
     let monitors = Monitors::get()?;
@@ -23,9 +24,17 @@ pub fn get_state() -> hyprland::Result<WorkspaceState> {
         .map(|workspace| workspace.id)
         .collect();
 
-    let occupied_ids: Vec<i32> = workspaces.map(|workspace| workspace.id).collect();
+    let occupied_ids: Vec<i32> = workspaces.clone().map(|workspace| workspace.id).collect();
 
-    Ok(WorkspaceState::new(current_id, monitor_ids, occupied_ids))
+    // Create a HashMap to hold the workspace ID and the number of windows
+    let mut workspace_windows: HashMap<i32, u16> = HashMap::new();
+
+    // Populate the HashMap
+    for workspace in workspaces {
+        workspace_windows.insert(workspace.id, workspace.windows);
+    }
+
+    Ok(WorkspaceState::new(current_id, monitor_ids, occupied_ids, workspace_windows))
 }
 
 /// Gets whether the current workspace is a special workspace or not.
