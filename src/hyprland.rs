@@ -7,9 +7,11 @@ use hyprland::prelude::*;
 use hyprnome::WorkspaceState;
 
 pub fn get_state() -> hyprland::Result<WorkspaceState> {
+    let mut monitors = Monitors::get()?;
+
     let workspaces = Workspaces::get()?;
     let current_id = Workspace::get_active()?.id;
-    let mut monitors = Monitors::get()?;
+
     let monitor_ids: Vec<i32> = workspaces
         .clone()
         .filter(|workspace| {
@@ -19,10 +21,14 @@ pub fn get_state() -> hyprland::Result<WorkspaceState> {
                 false
             }
         })
-        .map(|x| x.id)
-        .filter(|x| x > &0)
+        .map(|workspace| workspace.id)
+        .filter(|workspace| *workspace > 0)
         .collect();
-    let occupied_ids: Vec<i32> = workspaces.map(|x| x.id).filter(|x| x > &0).collect();
+
+    let occupied_ids: Vec<i32> = workspaces
+        .map(|workspace| workspace.id)
+        .filter(|workspace| *workspace > 0)
+        .collect();
 
     Ok(WorkspaceState::new(current_id, monitor_ids, occupied_ids))
 }
