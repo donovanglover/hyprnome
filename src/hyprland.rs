@@ -33,20 +33,21 @@ pub fn get_state() -> hyprland::Result<WorkspaceState> {
 ///
 /// The if statement is used to make sure this function works when no window
 /// is the active window.
-pub fn is_special() -> bool {
-    if let Some(client) = Client::get_active().unwrap() {
+pub fn is_special() -> hyprland::Result<bool> {
+    if let Some(client) = Client::get_active()? {
         let Client { workspace, .. } = client;
-        return workspace.name.contains("special");
+
+        return Ok(workspace.name.contains("special"));
     }
 
-    false
+    Ok(false)
 }
 
 pub fn change_workspace(id: i32, _move: bool, keep_special: bool) -> hyprland::Result<()> {
     let id = WorkspaceIdentifierWithSpecial::Id(id);
 
     if _move {
-        let was_special = is_special();
+        let was_special = is_special()?;
 
         hyprland::dispatch!(MoveToWorkspace, id, None)?;
 
@@ -56,7 +57,7 @@ pub fn change_workspace(id: i32, _move: bool, keep_special: bool) -> hyprland::R
             Ok(())
         }
     } else {
-        if !keep_special && is_special() {
+        if !keep_special && is_special()? {
             hyprland::dispatch!(ToggleSpecialWorkspace, None)?;
         }
 
