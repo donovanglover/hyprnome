@@ -6,18 +6,25 @@ use hyprland::dispatch::{Dispatch, DispatchType, WorkspaceIdentifierWithSpecial}
 use hyprland::prelude::*;
 use hyprnome::WorkspaceState;
 
-pub fn get_state() -> WorkspaceState {
-    let workspaces = Workspaces::get().unwrap();
-    let current_id = Workspace::get_active().unwrap().id;
+pub fn get_state() -> hyprland::Result<WorkspaceState> {
+    let workspaces = Workspaces::get()?;
+    let current_id = Workspace::get_active()?.id;
+    let mut monitors = Monitors::get()?;
     let monitor_ids: Vec<i32> = workspaces
         .clone()
-        .filter(|x| x.monitor == Monitors::get().unwrap().find(|x| x.focused).unwrap().name)
+        .filter(|workspace| {
+            if let Some(monitor) = monitors.find(|monitor| monitor.focused) {
+                workspace.monitor == monitor.name
+            } else {
+                false
+            }
+        })
         .map(|x| x.id)
         .filter(|x| x > &0)
         .collect();
     let occupied_ids: Vec<i32> = workspaces.map(|x| x.id).filter(|x| x > &0).collect();
 
-    WorkspaceState::new(current_id, monitor_ids, occupied_ids)
+    Ok(WorkspaceState::new(current_id, monitor_ids, occupied_ids))
 }
 
 /// Gets whether the current workspace is a special workspace or not.
