@@ -80,15 +80,6 @@ impl WorkspaceState {
             self.monitor_ids[self.monitor_ids.iter().position(|&x| x == self.current_id).unwrap() + 1]
         }
     }
-
-    // TODO: Change no_empty to enum
-    pub fn get_id(&self, previous: bool, no_empty: bool, no_empty_before: bool, no_empty_after: bool) -> i32 {
-        if previous {
-            self.get_previous_id(no_empty || no_empty_before)
-        } else {
-            self.get_next_id(no_empty || no_empty_after)
-        }
-    }
 }
 
 impl fmt::Display for WorkspaceState {

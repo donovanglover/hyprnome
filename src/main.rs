@@ -14,7 +14,12 @@ fn main() {
     cli::log(&format!("{}", workspace_state));
 
     let options = cli::get_options();
-    let id = workspace_state.get_id(options.0, options.1, options.2, options.3);
+
+    let id = if options.0 {
+        workspace_state.get_previous_id(options.1 || options.2)
+    } else {
+        workspace_state.get_next_id(options.1 || options.3)
+    };
 
     cli::log(&format!("Dispatched ID:\t{id}"));
 
