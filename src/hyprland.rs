@@ -7,15 +7,14 @@ use hyprland::prelude::*;
 use hyprnome::WorkspaceState;
 
 pub fn get_state() -> hyprland::Result<WorkspaceState> {
-    let mut monitors = Monitors::get()?;
-
+    let monitors = Monitors::get()?;
     let workspaces = Workspaces::get()?;
     let current_id = Workspace::get_active()?.id;
 
     let monitor_ids: Vec<i32> = workspaces
         .clone()
         .filter(|workspace| {
-            if let Some(monitor) = monitors.find(|monitor| monitor.focused) {
+            if let Some(monitor) = monitors.clone().find(|monitor| monitor.focused) {
                 workspace.monitor == monitor.name
             } else {
                 false
