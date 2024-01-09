@@ -1,7 +1,7 @@
 #![doc = include_str!("../README.md")]
 
-mod hyprland;
 mod cli;
+mod hyprland;
 
 /// Main function in charge of hyprnome logic.
 ///

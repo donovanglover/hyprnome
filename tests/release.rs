@@ -26,11 +26,7 @@ fn versions_are_the_same() {
     let cargo: Config = toml::from_str(cargo).unwrap();
     let cargo = cargo.package.unwrap().version.unwrap();
 
-    assert_eq!(
-        pkgbuild,
-        cargo.as_str(),
-        "Cargo.toml and PKGBUILD should have the same version"
-    );
+    assert_eq!(pkgbuild, cargo.as_str(), "Cargo.toml and PKGBUILD should have the same version");
 }
 
 #[test]
@@ -46,11 +42,7 @@ fn descriptions_are_the_same() {
     let cargo: Config = toml::from_str(cargo).unwrap();
     let cargo = cargo.package.unwrap().description.unwrap();
 
-    assert_eq!(
-        pkgbuild,
-        cargo.as_str(),
-        "Cargo.toml and PKGBUILD should have the same description"
-    );
+    assert_eq!(pkgbuild, cargo.as_str(), "Cargo.toml and PKGBUILD should have the same description");
 }
 
 #[test]
@@ -95,13 +87,7 @@ fn current_version_is_used() {
 
     let readme = &fs::read_to_string("README.md").unwrap();
 
-    assert!(
-        readme.contains(&("--tag ".to_owned() + cargo_version.as_str())),
-        "should have the correct tag version in the README"
-    );
+    assert!(readme.contains(&("--tag ".to_owned() + cargo_version.as_str())), "should have the correct tag version in the README");
 
-    assert!(
-        readme.contains(&("-b ".to_owned() + cargo_version.as_str())),
-        "should have the correct branch version in the README"
-    )
+    assert!(readme.contains(&("-b ".to_owned() + cargo_version.as_str())), "should have the correct branch version in the README")
 }
