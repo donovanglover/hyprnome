@@ -10,17 +10,17 @@ fn main() {
     let _move = cli::get_move();
     let keep_special = cli::get_keep_special();
 
-    let state = hyprland::get_state();
-    let workspace_state = hyprnome::WorkspaceState::new(state.0, state.1, state.2);
+    let (current_id, monitor_ids, occupied_ids) = hyprland::get_state();
+    let workspace_state = hyprnome::WorkspaceState::new(current_id, monitor_ids, occupied_ids);
 
     cli::log(&format!("{}", workspace_state));
 
-    let options = cli::get_options();
+    let (previous, no_empty, no_empty_before, no_empty_after) = cli::get_options();
 
-    let id = if options.0 {
-        workspace_state.get_previous_id(options.1 || options.2)
+    let id = if previous {
+        workspace_state.get_previous_id(no_empty || no_empty_before)
     } else {
-        workspace_state.get_next_id(options.1 || options.3)
+        workspace_state.get_next_id(no_empty || no_empty_after)
     };
 
     cli::log(&format!("Dispatched ID:\t{id}"));
