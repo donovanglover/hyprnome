@@ -24,6 +24,7 @@ pub fn get_state() -> hyprland::Result<WorkspaceState> {
         .filter(|workspace| *workspace > 0)
         .collect();
 
+    #[rustfmt::skip]
     let occupied_ids: Vec<i32> = workspaces
         .map(|workspace| workspace.id)
         .filter(|workspace| *workspace > 0)
