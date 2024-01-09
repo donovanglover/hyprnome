@@ -7,12 +7,13 @@ mod hyprland;
 ///
 /// Specific features are abstracted into lib to make things testable.
 fn main() {
-    let (_move, keep_special, previous, no_empty, no_empty_before, no_empty_after) = cli::get_options();
+    let [_move, keep_special, previous, no_empty, no_empty_before, no_empty_after, cycle] = cli::get_options();
 
     if let Ok(mut state) = hyprland::get_state() {
         state.set_no_empty_before(no_empty || no_empty_before);
         state.set_no_empty_after(no_empty || no_empty_after);
         state.set_previous(previous);
+        state.set_cycle(cycle);
 
         cli::log(&format!("{state}"));
 
