@@ -13,11 +13,15 @@ pub struct WorkspaceState {
     previous: bool,
 }
 
-/// Implementation for WorkspaceState
+/// A `WorkspaceState` is the current state of Hyprland.
+///
+/// A `WorkspaceState` also contains boolean options that affect which workspace a user is
+/// interested in next.
 impl WorkspaceState {
-    /// Creates a new WorkspaceState
+    /// Given the `current_id`, `monitor_ids`, and `occupied_ids`, create a new `WorkspaceState`.
     ///
     /// Vectors are sorted so it's easier to perform operations on them.
+    #[must_use]
     pub fn new(current_id: i32, mut monitor_ids: Vec<i32>, mut occupied_ids: Vec<i32>) -> Self {
         monitor_ids.sort_unstable();
         occupied_ids.sort_unstable();
@@ -39,6 +43,7 @@ impl WorkspaceState {
     ///     1.2) Otherwise, return the first unoccupied workspace before the current id
     ///         1.2.1) If all other workspaces before are occupied, return the current id instead
     /// 2) Otherwise, since there are workspaces before on the same monitor, select the one before.
+    #[must_use]
     pub fn get_previous_id(&self) -> i32 {
         if self.monitor_ids[0] == self.current_id {
             if self.monitor_ids[0] == 1 || self.no_empty_before {
@@ -68,6 +73,7 @@ impl WorkspaceState {
     ///     1.2) Otherwise, return the first unoccupied workspace after the current id
     ///         1.2.1) If all other workspaces after are occupied, return the current id instead
     /// 2) Otherwise, since there are workspaces after on the same monitor, select the one after.
+    #[must_use]
     pub fn get_next_id(&self) -> i32 {
         if self.monitor_ids[self.monitor_ids.len() - 1] == self.current_id {
             if self.monitor_ids[self.monitor_ids.len() - 1] == i32::MAX || self.no_empty_after {
@@ -110,6 +116,7 @@ impl WorkspaceState {
     }
 
     /// Gets an id based on the current state
+    #[must_use]
     pub fn get_id(&self) -> i32 {
         if self.previous {
             self.get_previous_id()
