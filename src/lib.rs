@@ -115,9 +115,9 @@ impl WorkspaceState {
         self.previous = previous;
     }
 
-    /// Gets an id based on the current state
+    /// Derives the id a user wants based on the current state
     #[must_use]
-    pub fn get_id(&self) -> i32 {
+    pub fn derive_id(&self) -> i32 {
         if self.previous {
             self.get_previous_id()
         } else {

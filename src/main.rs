@@ -16,7 +16,7 @@ fn main() {
 
         cli::log(&format!("{state}"));
 
-        let id = state.get_id();
+        let id = state.derive_id();
 
         if hyprland::change_workspace(id, _move, keep_special).is_ok() {
             cli::log(&format!("Dispatched ID:\t{id}"));
