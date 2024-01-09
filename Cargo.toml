@@ -21,3 +21,7 @@ assert_cmd = "2.0.12"
 rustympkglib = "0.1.1"
 serde = "1.0.190"
 toml = "0.8.6"
+
+[lints.rust]
+unsafe_code = "forbid"
+missing_docs = "deny"

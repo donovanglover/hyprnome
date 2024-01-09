@@ -1,41 +1,29 @@
-use clap::Parser;
-use cli::Cli;
-use hyprland::dispatch::*;
-use hyprnome::get_id;
-use hyprnome::is_special;
-use hyprnome::log;
+#![doc = include_str!("../README.md")]
 
 mod cli;
+mod hyprland;
 
 /// Main function in charge of hyprnome logic.
 ///
 /// Specific features are abstracted into lib to make things testable.
-fn main() -> hyprland::Result<()> {
-    let Cli {
-        _move,
-        keep_special,
-        ..
-    } = Cli::parse();
+fn main() {
+    let (_move, keep_special, previous, no_empty, no_empty_before, no_empty_after) = cli::get_options();
 
-    let id = WorkspaceIdentifierWithSpecial::Id(get_id());
+    if let Ok(mut state) = hyprland::get_state() {
+        state.set_no_empty_before(no_empty || no_empty_before);
+        state.set_no_empty_after(no_empty || no_empty_after);
+        state.set_previous(previous);
 
-    log(&format!("Dispatched ID:\t{id}"));
+        cli::log(&format!("{state}"));
 
-    if _move {
-        let was_special = is_special();
+        let id = state.derive_id();
 
-        hyprland::dispatch!(MoveToWorkspace, id, None)?;
-
-        if !keep_special && was_special {
-            hyprland::dispatch!(ToggleSpecialWorkspace, None)
+        if hyprland::change_workspace(id, _move, keep_special).is_ok() {
+            cli::log(&format!("Dispatched ID:\t{id}"));
         } else {
-            Ok(())
+            cli::log(&format!("Failed to dispatch ID {id}"));
         }
     } else {
-        if !keep_special && is_special() {
-            hyprland::dispatch!(ToggleSpecialWorkspace, None)?;
-        }
-
-        hyprland::dispatch!(Workspace, id)
+        cli::log("Tried to get state but wasn't able to. Is Hyprland running?");
     }
 }

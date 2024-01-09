@@ -1,3 +1,5 @@
+//! Generates man pages and shell completions for hyprnome.
+
 include!("src/cli.rs");
 
 use clap::Command;
@@ -16,7 +18,7 @@ fn generate_man_pages(cmd: Command) {
     create_dir_all(&man_dir).unwrap();
 
     let man = Man::new(cmd);
-    let mut buffer: Vec<u8> = Default::default();
+    let mut buffer: Vec<u8> = vec![];
 
     man.render(&mut buffer).expect("Man page generation failed");
     write(man_dir.join(NAME.to_owned() + ".1"), buffer).expect("Failed to write man page");

@@ -38,41 +38,41 @@ fn styles() -> Styles {
 
 #[derive(Parser)]
 #[command(author, version, about, long_about = LONG_ABOUT, styles = styles())]
-pub struct Cli {
+struct Cli {
     /// Go to the previous workspace instead of the next
     ///
     /// By default hyprnome will advance to the next workspace. --previous is necessary
     /// when you want to go backwards in the list of occupied workspaces.
     #[arg(short, long, default_value_t = false)]
-    pub previous: bool,
+    previous: bool,
 
     /// Move the active window to the dispatched workspace
     ///
     /// This flag lets you move windows across workspaces without having to worry about
     /// the current workspace you're in.
     #[arg(short, long, default_value_t = false)]
-    pub _move: bool,
+    _move: bool,
 
     /// Don't create empty workspaces in the given direction
     ///
     /// This prevents empty workspaces from being created when no occupied workspaces
     /// remain in the given direction.
     #[arg(short, long, default_value_t = false)]
-    pub no_empty: bool,
+    no_empty: bool,
 
     /// Don't create empty workspaces to the left
     ///
     /// NOTE: This flag is deprecated and has been replaced with --no-empty. The flag is
     /// kept for backwards compatibility with v0.1.0, but is hidden by default.
     #[arg(long, default_value_t = false, hide = true)]
-    pub no_empty_before: bool,
+    no_empty_before: bool,
 
     /// Don't create empty workspaces to the right
     ///
     /// NOTE: This flag is deprecated and has been replaced with --no-empty. The flag is
     /// kept for backwards compatibility with v0.1.0, but is hidden by default.
     #[arg(short = 'N', long, default_value_t = false, hide = true)]
-    pub no_empty_after: bool,
+    no_empty_after: bool,
 
     /// Don't auto-close special workspaces when switching workspaces
     ///
@@ -102,9 +102,33 @@ pub struct Cli {
     /// Summary: This flag is available so users can choose the old behavior, however automatically
     /// closing special workspaces (the default) does have its benefits.
     #[arg(short, long, default_value_t = false)]
-    pub keep_special: bool,
+    keep_special: bool,
 
     /// Print debugging information
     #[arg(short, long, default_value_t = false)]
-    pub verbose: bool,
+    verbose: bool,
+}
+
+/// Log information with --verbose
+pub fn log(text: &str) {
+    let Cli { verbose, .. } = Cli::parse();
+
+    if verbose {
+        println!("{text}");
+    }
+}
+
+/// Gets an ID to dispatch based on the current workspace state and cli options
+pub fn get_options() -> (bool, bool, bool, bool, bool, bool) {
+    let Cli {
+        _move,
+        keep_special,
+        previous,
+        no_empty,
+        no_empty_before,
+        no_empty_after,
+        ..
+    } = Cli::parse();
+
+    (_move, keep_special, previous, no_empty, no_empty_before, no_empty_after)
 }
