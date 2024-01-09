@@ -4,8 +4,9 @@ use hyprland::data::Workspace;
 use hyprland::data::Workspaces;
 use hyprland::dispatch::*;
 use hyprland::prelude::*;
+use hyprnome::WorkspaceState;
 
-pub fn get_state() -> (i32, Vec<i32>, Vec<i32>) {
+pub fn get_state() -> WorkspaceState {
     let workspaces = Workspaces::get().unwrap();
     let current_id = Workspace::get_active().unwrap().id;
     let monitor_ids: Vec<i32> = workspaces
@@ -16,7 +17,7 @@ pub fn get_state() -> (i32, Vec<i32>, Vec<i32>) {
         .collect();
     let occupied_ids: Vec<i32> = workspaces.map(|x| x.id).filter(|x| x > &0).collect();
 
-    (current_id, monitor_ids, occupied_ids)
+    WorkspaceState::new(current_id, monitor_ids, occupied_ids)
 }
 
 /// Gets whether the current workspace is a special workspace or not.

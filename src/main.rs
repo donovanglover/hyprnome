@@ -8,9 +8,7 @@ mod cli;
 /// Specific features are abstracted into lib to make things testable.
 fn main() {
     let (_move, keep_special, previous, no_empty, no_empty_before, no_empty_after) = cli::get_options();
-
-    let (current_id, monitor_ids, occupied_ids) = hyprland::get_state();
-    let workspace_state = hyprnome::WorkspaceState::new(current_id, monitor_ids, occupied_ids);
+    let workspace_state = hyprland::get_state();
 
     cli::log(&format!("{}", workspace_state));
 
