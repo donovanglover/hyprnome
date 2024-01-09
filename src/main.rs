@@ -8,15 +8,15 @@ mod hyprland;
 /// Specific features are abstracted into lib to make things testable.
 fn main() {
     let (_move, keep_special, previous, no_empty, no_empty_before, no_empty_after) = cli::get_options();
-    let state = hyprland::get_state();
+    let mut state = hyprland::get_state();
+
+    state.set_no_empty_before(no_empty || no_empty_before);
+    state.set_no_empty_after(no_empty || no_empty_after);
+    state.set_previous(previous);
 
     cli::log(&format!("{}", state));
 
-    let id = if previous {
-        state.get_previous_id(no_empty || no_empty_before)
-    } else {
-        state.get_next_id(no_empty || no_empty_after)
-    };
+    let id = state.get_id();
 
     cli::log(&format!("Dispatched ID:\t{id}"));
 
