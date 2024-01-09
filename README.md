@@ -64,6 +64,7 @@ Options:
   -m, --move          Move the active window to the dispatched workspace
   -n, --no-empty      Don't create empty workspaces in the given direction
   -k, --keep-special  Don't auto-close special workspaces when switching workspaces
+  -c, --cycle         Cycle between workspaces instead of creating new ones
   -v, --verbose       Print debugging information
   -h, --help          Print help (see more with '--help')
   -V, --version       Print version
