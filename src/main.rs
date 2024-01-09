@@ -18,7 +18,9 @@ fn main() {
 
     let id = state.get_id();
 
-    cli::log(&format!("Dispatched ID:\t{id}"));
-
-    let _ = hyprland::change_workspace(id, _move, keep_special);
+    if hyprland::change_workspace(id, _move, keep_special).is_ok() {
+        cli::log(&format!("Dispatched ID:\t{id}"));
+    } else {
+        cli::log(&format!("Failed to dispatch ID {id}"));
+    }
 }
