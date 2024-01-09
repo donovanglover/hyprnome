@@ -127,7 +127,7 @@ pub fn log(text: &str) {
 }
 
 /// Gets an ID to dispatch based on the current workspace state and cli options
-pub fn get_options() -> (bool, bool, bool, bool, bool, bool, bool) {
+pub fn get_options() -> [bool; 7] {
     let Cli {
         _move,
         keep_special,
@@ -139,5 +139,5 @@ pub fn get_options() -> (bool, bool, bool, bool, bool, bool, bool) {
         ..
     } = Cli::parse();
 
-    (_move, keep_special, previous, no_empty, no_empty_before, no_empty_after, cycle)
+    [_move, keep_special, previous, no_empty, no_empty_before, no_empty_after, cycle]
 }
