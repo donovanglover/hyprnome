@@ -1,6 +1,6 @@
 //! Library that can be used to get previous/next workspaces from a given state.
 
-use core::fmt;
+use std::fmt;
 
 /// Struct to keep related workspace state together
 #[derive(Default)]
