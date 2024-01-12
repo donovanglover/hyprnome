@@ -74,6 +74,13 @@ struct Cli {
     #[arg(short = 'N', long, default_value_t = false, hide = true)]
     no_empty_after: bool,
 
+    /// Only create a max of one empty workspace in a given direction
+    ///
+    /// This prevents additional empty workspaces from being created if the current active
+    /// workspace is empty and on either end of the workspace list (beginning or end)
+    #[arg(short, long, default_value_t = false)]
+    limit_workspace_range: bool,
+
     /// Don't auto-close special workspaces when switching workspaces
     ///
     /// With --move:
@@ -127,7 +134,7 @@ pub fn log(text: &str) {
 }
 
 /// Gets an ID to dispatch based on the current workspace state and cli options
-pub fn get_options() -> [bool; 7] {
+pub fn get_options() -> [bool; 8] {
     let Cli {
         _move,
         keep_special,
@@ -136,8 +143,9 @@ pub fn get_options() -> [bool; 7] {
         no_empty_before,
         no_empty_after,
         cycle,
+        limit_workspace_range,
         ..
     } = Cli::parse();
 
-    [_move, keep_special, previous, no_empty, no_empty_before, no_empty_after, cycle]
+    [_move, keep_special, previous, no_empty, no_empty_before, no_empty_after, cycle, limit_workspace_range]
 }
