@@ -63,6 +63,7 @@ Options:
   -p, --previous      Go to the previous workspace instead of the next
   -m, --move          Move the active window to the dispatched workspace
   -n, --no-empty      Don't create empty workspaces in the given direction
+  -e, --empty         Go to the next empty workspace
   -k, --keep-special  Don't auto-close special workspaces when switching workspaces
   -c, --cycle         Cycle between workspaces instead of creating new ones
   -v, --verbose       Print debugging information

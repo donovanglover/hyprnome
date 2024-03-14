@@ -138,3 +138,24 @@ fn cycle() {
 
     assert_eq!(state.get_previous_id(), 504, "should return the last workspace on monitor if first workspace on monitor");
 }
+
+#[test]
+fn empty() {
+    let current_id = 501;
+    let monitor_ids = [500, 501].to_vec();
+    let occupied_ids = [500, 501].to_vec();
+    let mut state = WorkspaceState::new(current_id, monitor_ids, occupied_ids);
+
+    state.set_empty(true);
+
+    assert_eq!(state.get_previous_id(), 499, "should return previous empty workspace if requested");
+
+    let current_id = 501;
+    let monitor_ids = [500, 501].to_vec();
+    let occupied_ids = [499, 500, 501].to_vec();
+    let mut state = WorkspaceState::new(current_id, monitor_ids, occupied_ids);
+
+    state.set_empty(true);
+
+    assert_eq!(state.get_previous_id(), 498, "should return previous empty workspace if requested with occupied workspaces on other monitors");
+}
