@@ -2,7 +2,7 @@
 name = "hyprnome"
 description = "GNOME-like workspace switching in Hyprland."
 version = "0.2.0"
-authors = ["Copyright (C) 2023 Donovan Glover <https://donovan.is/>"]
+authors = ["Copyright (C) 2023-2024 Donovan Glover <https://donovan.is/>"]
 repository = "https://github.com/donovanglover/hyprnome"
 edition = "2021"
 license = "GPL-3.0-or-later"
