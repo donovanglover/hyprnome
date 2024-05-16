@@ -20,7 +20,7 @@ clap_mangen = "0.2.20"
 assert_cmd = "2.0.14"
 rustympkglib = "0.1.1"
 serde = "1.0.200"
-toml = "0.8.12"
+toml = "0.8.13"
 
 [lints.rust]
 unsafe_code = "forbid"
