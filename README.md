@@ -35,7 +35,7 @@ Alternatively, use `nix run nixpkgs#hyprnome` to try hyprnome without installing
 I don't use Arch Linux anymore, but I wrote a PKGBUILD for the `pacman` enjoyers out there. Feel free to add it to the AUR.
 
 ```fish
-git clone https://github.com/donovanglover/hyprnome -b 0.2.0 && cd hyprnome && makepkg -si
+git clone https://github.com/donovanglover/hyprnome -b 0.3.0 && cd hyprnome && makepkg -si
 ```
 
 ### [Fedora](https://fedoraproject.org/) (Copr)
@@ -51,7 +51,7 @@ sudo dnf copr enable solopasha/hyprland && sudo dnf install hyprnome
 Follow the [install guide](https://www.rust-lang.org/tools/install) for Rust. Then, use cargo to install hyprnome.
 
 ```fish
-cargo install --git https://github.com/donovanglover/hyprnome --tag 0.2.0
+cargo install --git https://github.com/donovanglover/hyprnome --tag 0.3.0
 ```
 
 ## Usage
