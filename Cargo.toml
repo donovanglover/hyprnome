@@ -9,7 +9,7 @@ license = "GPL-3.0-or-later"
 
 [dependencies]
 clap = { version = "4.5.4", features = ["derive"] }
-hyprland = "0.4.0-alpha.1"
+hyprland = { git = "https://github.com/MrYuto/hyprland-rs" }
 
 [build-dependencies]
 clap = { version = "4.5.4", features = ["derive"] }
