@@ -32,10 +32,10 @@ Alternatively, use `nix run nixpkgs#hyprnome` to try hyprnome without installing
 
 ### [Arch Linux](https://archlinux.org/) (PKGBUILD)
 
-I don't use Arch Linux anymore, but I wrote a PKGBUILD for the `pacman` enjoyers out there. Feel free to add it to the AUR.
+Use an AUR helper like [yay](https://github.com/Jguer/yay) to install [`hyprnome`](https://aur.archlinux.org/packages/hyprnome).
 
 ```fish
-git clone https://github.com/donovanglover/hyprnome -b 0.3.0 && cd hyprnome && makepkg -si
+yay hyprnome
 ```
 
 ### [Fedora](https://fedoraproject.org/) (Copr)
