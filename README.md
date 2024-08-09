@@ -12,7 +12,7 @@
 
 ## Installation
 
-hyprnome has official support for NixOS, Arch Linux (PKGBUILD), and Fedora (Copr).
+hyprnome has official support for NixOS, Arch Linux (AUR), and Fedora (Copr).
 
 ### [NixOS](https://wiki.nixos.org/wiki/Overview_of_the_NixOS_Linux_distribution) (Recommended)
 
@@ -30,7 +30,7 @@ Add [`hyprnome`](https://search.nixos.org/packages?channel=unstable&query=hyprno
 
 Alternatively, use `nix run nixpkgs#hyprnome` to try hyprnome without installing it.
 
-### [Arch Linux](https://archlinux.org/) (PKGBUILD)
+### [Arch Linux](https://archlinux.org/) (AUR)
 
 Use an AUR helper like [yay](https://github.com/Jguer/yay) to install [`hyprnome`](https://aur.archlinux.org/packages/hyprnome).
 
