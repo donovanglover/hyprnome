@@ -14,6 +14,8 @@
 
 hyprnome has official support for NixOS, Arch Linux (AUR), and Fedora (Copr).
 
+[![Packaging status](https://repology.org/badge/vertical-allrepos/hyprnome.svg)](https://repology.org/project/hyprnome/versions)
+
 ### [NixOS](https://wiki.nixos.org/wiki/Overview_of_the_NixOS_Linux_distribution) (Recommended)
 
 Add [`hyprnome`](https://search.nixos.org/packages?channel=unstable&query=hyprnome) to your `systemPackages` and rebuild.
