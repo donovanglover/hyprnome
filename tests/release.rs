@@ -88,6 +88,4 @@ fn current_version_is_used() {
     let readme = &fs::read_to_string("README.md").unwrap();
 
     assert!(readme.contains(&("--tag ".to_owned() + cargo_version.as_str())), "should have the correct tag version in the README");
-
-    assert!(readme.contains(&("-b ".to_owned() + cargo_version.as_str())), "should have the correct branch version in the README")
 }

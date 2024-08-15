@@ -12,9 +12,9 @@
 
 ## Installation
 
-hyprnome has official support for NixOS, Arch Linux (PKGBUILD), and Fedora (Copr).
+hyprnome has official support for NixOS, Arch Linux (AUR), and Fedora (Copr).
 
-### [NixOS](https://nixos.wiki/wiki/Overview_of_the_NixOS_Linux_distribution) (Recommended)
+### [NixOS](https://wiki.nixos.org/wiki/Overview_of_the_NixOS_Linux_distribution) (Recommended)
 
 Add [`hyprnome`](https://search.nixos.org/packages?channel=unstable&query=hyprnome) to your `systemPackages` and rebuild.
 
@@ -30,12 +30,12 @@ Add [`hyprnome`](https://search.nixos.org/packages?channel=unstable&query=hyprno
 
 Alternatively, use `nix run nixpkgs#hyprnome` to try hyprnome without installing it.
 
-### [Arch Linux](https://archlinux.org/) (PKGBUILD)
+### [Arch Linux](https://archlinux.org/) (AUR)
 
-I don't use Arch Linux anymore, but I wrote a PKGBUILD for the `pacman` enjoyers out there. Feel free to add it to the AUR.
+Use an AUR helper like [yay](https://github.com/Jguer/yay) to install [`hyprnome`](https://aur.archlinux.org/packages/hyprnome).
 
 ```fish
-git clone https://github.com/donovanglover/hyprnome -b 0.3.0 && cd hyprnome && makepkg -si
+yay hyprnome
 ```
 
 ### [Fedora](https://fedoraproject.org/) (Copr)
@@ -51,7 +51,7 @@ sudo dnf copr enable solopasha/hyprland && sudo dnf install hyprnome
 Follow the [install guide](https://www.rust-lang.org/tools/install) for Rust. Then, use cargo to install hyprnome.
 
 ```fish
-cargo install --git https://github.com/donovanglover/hyprnome --tag 0.3.0
+cargo install --git https://github.com/donovanglover/hyprnome --tag 0.3.1
 ```
 
 ## Usage
