@@ -1,5 +1,6 @@
 //! Library that can be used to get previous/next workspaces from a given state.
 
+use std::collections::HashMap;
 use std::fmt;
 
 /// Struct to keep related workspace state together
@@ -8,10 +9,13 @@ pub struct WorkspaceState {
     current_id: i32,
     monitor_ids: Vec<i32>,
     occupied_ids: Vec<i32>,
+    workspace_windows: HashMap<i32, u16>,
     no_empty_before: bool,
     no_empty_after: bool,
     previous: bool,
     cycle: bool,
+    limit_workspace_range: bool,
+    _move: bool,
 }
 
 /// A `WorkspaceState` is the current state of Hyprland.
@@ -23,7 +27,7 @@ impl WorkspaceState {
     ///
     /// Vectors are sorted so it's easier to perform operations on them.
     #[must_use]
-    pub fn new(current_id: i32, mut monitor_ids: Vec<i32>, mut occupied_ids: Vec<i32>) -> Self {
+    pub fn new(current_id: i32, mut monitor_ids: Vec<i32>, mut occupied_ids: Vec<i32>, workspace_windows: HashMap<i32, u16>) -> Self {
         monitor_ids.sort_unstable();
         occupied_ids.sort_unstable();
 
@@ -31,10 +35,13 @@ impl WorkspaceState {
             current_id,
             monitor_ids,
             occupied_ids,
+            workspace_windows,
             no_empty_before: false,
             no_empty_after: false,
             previous: false,
             cycle: false,
+            limit_workspace_range: false,
+            _move: false,
         }
     }
 
@@ -49,7 +56,10 @@ impl WorkspaceState {
     #[must_use]
     pub fn get_previous_id(&self) -> i32 {
         if self.monitor_ids[0] == self.current_id {
-            if self.monitor_ids[0] == 1 || self.no_empty_before || self.cycle {
+            let current_windows: &u16 = self.workspace_windows.get(&self.current_id).unwrap();
+            let limit_ws_range: bool = self.limit_workspace_range && (current_windows == &0 || (self._move && current_windows == &1));
+
+            if self.monitor_ids[0] == 1 || self.no_empty_before || self.cycle || limit_ws_range {
                 if self.cycle {
                     self.monitor_ids[self.monitor_ids.len() - 1]
                 } else {
@@ -84,7 +94,10 @@ impl WorkspaceState {
     #[must_use]
     pub fn get_next_id(&self) -> i32 {
         if self.monitor_ids[self.monitor_ids.len() - 1] == self.current_id {
-            if self.monitor_ids[self.monitor_ids.len() - 1] == i32::MAX || self.no_empty_after || self.cycle {
+            let current_windows: &u16 = self.workspace_windows.get(&self.current_id).unwrap();
+            let limit_ws_range: bool = self.limit_workspace_range && (current_windows == &0 || (self._move && current_windows == &1));
+
+            if self.monitor_ids[self.monitor_ids.len() - 1] == i32::MAX || self.no_empty_after || self.cycle || limit_ws_range {
                 if self.cycle {
                     self.monitor_ids[0]
                 } else {
@@ -130,6 +143,16 @@ impl WorkspaceState {
     /// Sets `cycle`
     pub fn set_cycle(&mut self, cycle: bool) {
         self.cycle = cycle;
+    }
+
+    /// Sets `limit_workspace_range`
+    pub fn set_limit_workspace_range(&mut self, limit_workspace_range: bool) {
+        self.limit_workspace_range = limit_workspace_range;
+    }
+
+    /// Sets `_move`
+    pub fn set_move(&mut self, _move: bool) {
+        self._move = _move;
     }
 
     /// Derives the id a user wants based on the current state
